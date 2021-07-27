@@ -95,8 +95,8 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('telefono') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-telefono">{{ __('Telefono de Contacto') }}</label>
-                                    <input type="text" name="telefono" id="input-telefono" class="form-control form-control-alternative{{ $errors->has('telefono') ? ' is-invalid' : '' }}" placeholder="{{ __('Area del contacto') }}" value="{{ $user->telefono }}">
+                                    <label class="form-control-label" for="input-telefono">{{ __('Teléfono de Contacto') }}</label>
+                                    <input type="text" name="telefono" id="input-telefono" class="form-control form-control-alternative{{ $errors->has('telefono') ? ' is-invalid' : '' }}" placeholder="{{ __('Teléfono del contacto') }}" value="{{ $user->telefono }}">
 
                                     @if ($errors->has('telefono'))
                                         <span class="invalid-feedback" role="alert">
