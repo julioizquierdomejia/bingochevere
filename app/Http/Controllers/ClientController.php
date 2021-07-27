@@ -271,10 +271,10 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 2)
             ->get();
 
-        $id = auth()->user()->id;
+        $id_auth = auth()->user()->id;
         $user_current = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->where('users.id', '=', $id)
+            ->where('users.id', '=', $id_auth)
             ->first();
 
         $user = User::where('id', $id)->first();
