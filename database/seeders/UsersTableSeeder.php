@@ -43,6 +43,7 @@ class UsersTableSeeder extends Seeder
         $user->roles()->attach($role_superadmin);
 
 
+        /*
         $user = new User();
         $user->name = 'Saga Falabella';
         $user->email = 'saga@gmail.com';
@@ -64,5 +65,6 @@ class UsersTableSeeder extends Seeder
         $user->save();
 
         $user->roles()->attach($role_admin);
+        */
     }
 }
