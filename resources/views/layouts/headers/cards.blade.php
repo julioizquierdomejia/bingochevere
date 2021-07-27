@@ -15,7 +15,7 @@
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                            <i class="fas fa-chart-bar"></i>
+                                            <i class="far fa-building"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -32,11 +32,11 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Usuarios Registrados</h5>
-                                        <span class="h2 font-weight-bold mb-0">2,356</span>
+                                        <span class="h2 font-weight-bold mb-0">{{$trabajadores->count()}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                                            <i class="fas fa-chart-pie"></i>
+                                            <i class="fas fa-user"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -53,11 +53,11 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Cartones generados</h5>
-                                        <span class="h2 font-weight-bold mb-0">924</span>
+                                        <span class="h2 font-weight-bold mb-0">0</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                                            <i class="fas fa-users"></i>
+                                            <i class="fas fa-chess-board"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -74,11 +74,11 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0">Bingos realizados</h5>
-                                        <span class="h2 font-weight-bold mb-0">49,65%</span>
+                                        <span class="h2 font-weight-bold mb-0">{{$campanias->count()}}</span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                                            <i class="fas fa-percent"></i>
+                                            <i class="fas fa-tablets"></i>
                                         </div>
                                     </div>
                                 </div>

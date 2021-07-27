@@ -42,7 +42,6 @@ class ClientController extends Controller
         $trabajadores = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', '=', 3)
-            ->where('users.parent_id', '=', $id)
             ->get();
 
         //relacion de campañas por cliente

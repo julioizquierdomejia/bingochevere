@@ -76,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <input type="text" name="url" value="{{ Request::get('valores') }}">
+                            <input type="hidden" name="url" value="{{ Request::get('valores') }}">
                             
                             
                             <!--div class="text-muted font-italic">
