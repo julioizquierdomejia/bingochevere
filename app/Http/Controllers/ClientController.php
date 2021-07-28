@@ -370,6 +370,12 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //relacion de clientes
+        $users = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->where('role_user.role_id', '=', 2)
+            ->get();
+            
         $user = User::where('id', $id)->first();
 
         //creamos la URL para el registro de colaboradores
