@@ -348,6 +348,18 @@ class ClientController extends Controller
 
         $empresa_current = User::Where('id', $user_current->parent_id)->first();
 
+        //Relacion de trabajdores tipo 3
+        $trabajadores = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->where('role_user.role_id', '=', 3)
+            ->get();
+
+        //relacion de campañas por cliente
+        $campanias = DB::table('campaigns')
+            ->join('campaign_user', 'campaigns.id', '=', 'campaign_user.campaign_id')
+            ->join('users', 'campaign_user.user_id', '=', 'users.id')
+            ->select('campaigns.*', 'users.name as nombre_cliente')
+            ->get();
 
         $campania = campaign::where('id', $id)->first();
 
@@ -356,7 +368,7 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 2)
             ->get();
 
-        return view('admin.clients.editgame', compact('campania', 'users', 'user_current', 'empresa_current'));
+        return view('admin.clients.editgame', compact('campania', 'users', 'user_current', 'empresa_current', 'trabajadores', 'campanias'));
         
     }
 
@@ -432,6 +444,8 @@ class ClientController extends Controller
             'color' => $request->input('color'),
             'status' => $request->input('statusCamapania'),
         ]);
+
+
 
         return redirect()->back();
 
