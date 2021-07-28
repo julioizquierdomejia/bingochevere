@@ -56,7 +56,23 @@ class ClientController extends Controller
 
     public function createbingo($id)
     {
-        dd($id);
+        
+        //rangos
+        $b_range = range(1, 15);
+        $i_range = range(16, 30);
+        $n_range = range(31, 45);
+        $g_range = range(46, 60);
+        $o_range = range(61, 75);
+
+        $range = [];
+
+        foreach (range(0, 15 - 1) as $i) {
+            while(in_array($num = mt_Rand(1, 15), $range));
+            $range[] = $num;
+        }
+        dd($range);
+
+
     }
 
     /**
@@ -78,7 +94,13 @@ class ClientController extends Controller
             ->where('users.id', '=', $id)
             ->first();
 
-        return view('admin.clients.create', compact('users', 'user_current'));
+        //Relacion de trabajdores tipo 3
+        $trabajadores = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->where('role_user.role_id', '=', 3)
+            ->get();
+
+        return view('admin.clients.create', compact('users', 'user_current', 'trabajadores'));
     }
 
     public function register(ValidationformRequest $request)
