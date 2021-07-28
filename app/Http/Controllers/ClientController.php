@@ -412,6 +412,8 @@ class ClientController extends Controller
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
 
+        $empresa_current = User::Where('id', $user_current->parent_id)->first();
+
         //return redirect()->back();
         return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores'));
 
