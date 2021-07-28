@@ -42,7 +42,7 @@
                                                 @if($user->contacto == null)
                                                     <span class="text-light">No hay contacto registrado</span>
                                                 @else
-                                                    <span class="text-primary" data-toggle="tooltip" data-placement="top" title="Crear Nuevo Cliente">{{$user->contacto}}</span>
+                                                    <span class="text-primary" data-toggle="tooltip" data-placement="top" title="{{$user->email}} / {{$user->telefono}}">{{$user->contacto}}</span>
                                                 @endif
                                             </td>
                                             <!--td>
