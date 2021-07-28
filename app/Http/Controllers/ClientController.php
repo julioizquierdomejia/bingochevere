@@ -100,7 +100,14 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 3)
             ->get();
 
-        return view('admin.clients.create', compact('users', 'user_current', 'trabajadores'));
+        //relacion de campañas por cliente
+        $campanias = DB::table('campaigns')
+            ->join('campaign_user', 'campaigns.id', '=', 'campaign_user.campaign_id')
+            ->join('users', 'campaign_user.user_id', '=', 'users.id')
+            ->select('campaigns.*', 'users.name as nombre_cliente')
+            ->get();
+
+        return view('admin.clients.create', compact('users', 'user_current', 'trabajadores', 'campanias'));
     }
 
     public function register(ValidationformRequest $request)
