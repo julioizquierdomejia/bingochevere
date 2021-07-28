@@ -378,6 +378,12 @@ class ClientController extends Controller
 
         $user = User::where('id', $id)->first();
 
+        $id_current = auth()->user()->id;
+        $user_current = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->where('users.id', '=', $id_current)
+            ->first();
+
         //creamos la URL para el registro de colaboradores
         $ruta_register = $request->root().'/register?='.$user->id;
         
@@ -405,7 +411,6 @@ class ClientController extends Controller
             ->join('users', 'campaign_user.user_id', '=', 'users.id')
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
-
 
         //return redirect()->back();
         return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores'));
