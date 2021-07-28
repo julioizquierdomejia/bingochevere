@@ -116,8 +116,12 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-success" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Url Registro">
+                                                    <i class="far fa-edit"></i></a>
+
                                             <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-warning" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
                                                     <i class="far fa-edit"></i></a>
+
                                         </td>
                                     </tr>
                                     @endforeach
