@@ -305,9 +305,22 @@ class ClientController extends Controller
             ->where('users.id', '=', $id_auth)
             ->first();
 
+        //Relacion de trabajdores tipo 3
+        $trabajadores = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->where('role_user.role_id', '=', 3)
+            ->get();
+
+        //relacion de campañas por cliente
+        $campanias = DB::table('campaigns')
+            ->join('campaign_user', 'campaigns.id', '=', 'campaign_user.campaign_id')
+            ->join('users', 'campaign_user.user_id', '=', 'users.id')
+            ->select('campaigns.*', 'users.name as nombre_cliente')
+            ->get();
+
         $user = User::where('id', $id)->first();
 
-        return view('admin.clients.edit', compact('user', 'users', 'user_current'));
+        return view('admin.clients.edit', compact('user', 'users', 'user_current', 'trabajadores', 'campanias'));
         
     }
 
