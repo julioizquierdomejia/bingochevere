@@ -387,7 +387,8 @@ class ClientController extends Controller
             //'url_register' => $ruta_register,
         ]);
 
-        return redirect()->back();
+        //return redirect()->back();
+        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores'));
 
     }
 
