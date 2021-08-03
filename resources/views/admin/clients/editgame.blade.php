@@ -52,7 +52,7 @@
 
                                 <div class="form-group{{ $errors->has('cant') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-cant">{{ __('Canitdad de Cartones') }}</label>
-                                    <input type="text" name="cant" id="input-cant" class="form-control form-control-alternative{{ $errors->has('cant') ? ' is-invalid' : '' }}" placeholder="{{ __('Cantidad de Cartones') }}" value="{{ $campania->cant }}"autofocus>
+                                    <input type="text" name="cant" id="input-cant" class="form-control form-control-alternative{{ $errors->has('cant') ? ' is-invalid' : '' }}" placeholder="{{ __('Cantidad de Cartones') }}" value="{{ $campania->cant }}">
 
                                     @if ($errors->has('cant'))
                                         <span class="invalid-feedback" role="alert">
@@ -67,8 +67,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="form-control-label" for="input-cant">{{ __('URL para crear cartones') }} <i class="far fa-copy fa-lg text-danger ml-2"></i></label>
-                                    <input type="text" name="cant" id="input-cant" class="form-control form-control-alternative clipboard" value="{{ $campania->url_register }}">
+                                    <label class="form-control-label" for="input-url">{{ __('URL para crear cartones') }} <i class="far fa-copy fa-lg text-danger ml-2"></i></label>
+                                    <input type="text" name="url_register" id="input-url" class="form-control form-control-alternative clipboard" value="{{ $campania->url_register }}">
                                 </div>
 
                                 

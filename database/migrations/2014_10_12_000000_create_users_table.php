@@ -25,7 +25,9 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
             $table->integer('status');
-
+            
+            $table->string('logo_cliente', 2048)->nullable();
+            
             $table->string('nombre_comercial')->nullable();
             $table->string('ruc')->nullable();
             $table->string('contacto')->nullable();

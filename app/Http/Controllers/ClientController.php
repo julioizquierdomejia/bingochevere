@@ -51,7 +51,13 @@ class ClientController extends Controller
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
 
-        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores'));
+        $campania = DB::table('users')
+            ->where('users.id', '=', $user_current->id)
+            ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
+            ->first();
+
+
+        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania'));
     }
 
     public function createbingo($id)
@@ -149,6 +155,21 @@ class ClientController extends Controller
     public function store(ValidationformRequest $request)
     {
         //
+        //ruta del storage para las imagenes
+        //$ruta = storage_path() . '/logos_clientes/';
+        $nombre_imagen_logo = '';
+        $ruta = 'assets/img/logos_clientes/';
+
+        if ($request->hasFile('logo_cliente')) { // el fondo del diseño
+            $nombre_imagen_logo =  time()."_".request()->file('logo_cliente')->getClientOriginalName();//Aqui se genera el nombre de la imagen
+        
+            //Capturamos la imagen que viene por el fomrulario
+            $imagen = request()->file('logo_cliente');
+        
+            //grabamos la imagen en el storage public
+            Image::make($imagen)->save($ruta.$nombre_imagen_logo, 60);
+        }
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -159,6 +180,9 @@ class ClientController extends Controller
         $user->area = $request->area;
         $user->telefono = $request->telefono;
         $user->password = bcrypt('12345678');
+
+        $user->logo_cliente = $nombre_imagen_logo;
+
         $user->status = 1;
 
         $user->save();
@@ -194,7 +218,8 @@ class ClientController extends Controller
     {
 
         //ruta del storage para las imagenes
-        $ruta = storage_path() . '/background_bingo/';
+        //$ruta = storage_path() . '/background_bingo/';
+        $ruta = 'assets/img/background_bingo/';
         $nombre_imagen_disenio = '';
         $nombre_imagen = '';
 

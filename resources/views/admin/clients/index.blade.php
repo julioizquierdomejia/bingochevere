@@ -28,7 +28,7 @@
                                     <tr>
                                         <th scope="col">Cliente</th>
                                         <th scope="col">Contacto</th>
-                                        <th scope="col">Col / Cart</th>
+                                        <th scope="col">contactos</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
@@ -42,14 +42,14 @@
                                                 @if($user->contacto == null)
                                                     <span class="text-light">No hay contacto registrado</span>
                                                 @else
-                                                    <span class="text-primary" data-toggle="tooltip" data-placement="top" title="{{$user->email}} / {{$user->telefono}}">{{$user->contacto}}</span>
+                                                    <span class="text-primary">{{$user->contacto}}</span>
                                                 @endif
                                             </td>
                                             <!--td>
                                                 0
                                             </td-->
                                             <td>
-                                                20 / 35
+                                                <b>{{$user->telefono}}</b> / {{$user->email}}
                                             </td>
                                             <td>
                                                 <a href=" {{route('admin.clients.edit', $user->id )}} " class="btn btn-sm btn-warning" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
@@ -76,7 +76,7 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class="mb-0">Campañas Activas</h3>
+                                    <h3 class="mb-0">Campañas Activas <span><input type="text" name="" value="" class="clipboard" style="border:0; color: gray; margin-left: 10px; opacity: 0;"></span></h3>
                                 </div>
                                 {{--
                                 <div class="col text-right">
@@ -115,13 +115,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-success" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Url Registro">
-                                                    <i class="far fa-edit"></i></a>
+                                        <td class="row-register">
+                                            <a class="btn btn-sm btn-success text-white boton_copiar">
+                                                    <i class="far fa-copy"></i>
 
                                             <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-warning" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
                                                     <i class="far fa-edit"></i></a>
 
+                                            <input type="text" name="" id="" value="{{$camp->url_register}}" class="url_registro" style="opacity:0;">
                                         </td>
                                     </tr>
                                     @endforeach
@@ -271,38 +272,11 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class="mb-0">Carton de Bingo</h3>
-                                </div>
-                                <div class="col text-right">
-                                    <a href="clientes/{{$user_current->id}}/crearcarton" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Crear Carton de Bingo"><i class="fas fa-plus-circle"></i> Generar Carton de bingo</a>
+                                    <a href="clientes/{{$user_current->id}}/crearcarton" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Crear Carton de Bingo"><i class="fas fa-plus-circle"></i> Generar Carton de bingo</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center table-flush" id="table_clients">
-
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Número de Carton</th>
-                                        <th scope="col">Campaña</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($users as $user)
-                                        <tr>
-                                            <th scope="row">
-                                                {{$user->name}}
-                                            </th>
-                                            <td>
-                                                
-                                            </td>
-                                            
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -335,9 +309,46 @@
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.20/dist/sweetalert2.all.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready( function () {
             //$('#table_clients').DataTable();
+
+            //const button = document.querySelector('#boton_copiar');
+            //const input = document.querySelector('#url_registro');
+
+
+            //aqui tengo que aprovechar la iteracción
+
+            //$('.boton_copiar').addEventListener('click', function(){
+                //alert('hola');
+                //$(this).find('input').focus();
+                //$('.url_registro').focus();
+                //document.execCommand('selectAll')
+                //document.execCommand('copy')
+
+            //})
+
+            $('.boton_copiar').click(function(){
+                valor = $(this).parent().find('input').val();
+                $('.clipboard').val(valor);
+                $('.clipboard').focus();
+                document.execCommand('selectAll');
+                document.execCommand('copy');
+                
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Felicidades',
+                  text: 'Se copio la URL para el registro!',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+
+            })
+
+
         } );
     </script>
 @endpush
