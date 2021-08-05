@@ -198,7 +198,12 @@
             <div class="header-body">
                 <!-- Card stats -->
                 
-                <img src="../assets/img/logos_clientes/{{$empresa_current->logo_cliente}}" style="width:260px; height:auto;">
+                @if($empresa_current->logo_cliente == null)
+                    {{--<h1 class="text-white">{{$empresa_current->name}}</h1>--}}
+                @else
+                    <img src="../assets/img/logos_clientes/{{$empresa_current->logo_cliente}}" style="width:260px; height:auto;">
+                @endif
+                
 
                 <div class="row mt-4">
                     <div class="col">

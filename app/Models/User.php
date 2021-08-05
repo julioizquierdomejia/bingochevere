@@ -34,6 +34,7 @@ class User extends Authenticatable
         'contacto',
         'area',
         'telefono',
+        'logo_cliente',
         'status',
 
     ];

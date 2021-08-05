@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="/admin/clientes/{{ $user->id }}/actualizar" autocomplete="off">
+                        <form method="post" action="/admin/clientes/{{ $user->id }}/actualizar" autocomplete="off" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
                             
@@ -104,6 +104,23 @@
                                         </span>
                                     @endif
                                 </div>
+
+                                <div class="form-group{{ $errors->has('logo_cliente') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-logo_cliente">{{ __('Logo de la empresa') }}</label>
+                                    <input type="file" name="logo_cliente" id="input-logo_cliente" class="form-control form-control-alternative{{ $errors->has('logo_cliente') ? ' is-invalid' : '' }}" placeholder="{{ __('Descripción de la Campaña') }}" value="{{ old('logo_cliente') }}">
+
+                                    @if ($errors->has('logo_cliente'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('logo_cliente') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                @if ($user->logo_cliente == null)
+
+                                @else
+                                    <img src="/assets/img/logos_clientes/{{$user->logo_cliente}}" style="width:200px; height:auto;">
+                                @endif
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Actualizar Cliente') }}</button>

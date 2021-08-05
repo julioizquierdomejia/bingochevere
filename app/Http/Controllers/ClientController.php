@@ -13,6 +13,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 use Illuminate\Http\Request;
 
+use File;
+
+
 class ClientController extends Controller
 {
     /**
@@ -407,13 +410,34 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::where('id', $id)->first();
+
+        $nombre_imagen_logo = '';
+        $ruta = 'assets/img/logos_clientes/';
+
+        if ($request->hasFile('logo_cliente')) { // el fondo del diseño
+
+            //consultamos si este registro ya tiene una imagen en la base de datos
+            File::delete($ruta.$user->logo_cliente);
+
+            $nombre_imagen_logo =  time()."_".request()->file('logo_cliente')->getClientOriginalName();//Aqui se genera el nombre de la imagen
+        
+            //Capturamos la imagen que viene por el fomrulario
+            $imagen = request()->file('logo_cliente');
+        
+            //grabamos la imagen en el storage public
+            Image::make($imagen)->save($ruta.$nombre_imagen_logo, 60);
+
+        }
+
+
+
         //relacion de clientes
         $users = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', '=', 2)
             ->get();
 
-        $user = User::where('id', $id)->first();
 
         $id_current = auth()->user()->id;
         $user_current = DB::table('users')
@@ -423,7 +447,7 @@ class ClientController extends Controller
 
         //creamos la URL para el registro de colaboradores
         $ruta_register = $request->root().'/register?='.$user->id;
-        
+
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -433,6 +457,8 @@ class ClientController extends Controller
             'contacto' => $request->input('contacto'),
             'area' => $request->input('area'),
             'telefono' => $request->input('telefono'),
+            'logo_cliente' => $nombre_imagen_logo,
+
             //'url_register' => $ruta_register,
         ]);
 
