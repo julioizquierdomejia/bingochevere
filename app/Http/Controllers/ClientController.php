@@ -63,7 +63,8 @@ class ClientController extends Controller
         return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania'));
     }
 
-    public function createbingo($id)
+    //public function createbingo($id)
+    public function createbingo(Request $request)
     {
         
         //rangos
@@ -75,11 +76,55 @@ class ClientController extends Controller
 
         $range = [];
 
+        /*
         foreach (range(0, 15 - 1) as $i) {
-            while(in_array($num = mt_Rand(1, 15), $range));
+            while(in_array($num = mt_Rand(1, 5), $range));
             $range[] = $num;
         }
-        dd($range);
+        dd($range);*/
+
+        
+        //echo $aleatorio;
+
+        function randomGen($min, $max, $quantity) {
+            $numbers = range($min, $max);
+            shuffle($numbers);
+            return array_slice($numbers, 0, $quantity);
+        }
+
+        $numeros_B = randomGen(1,15,5);
+        $numeros_I = randomGen(16,30,5);
+        $numeros_N = randomGen(31,45,5);
+        $numeros_G = randomGen(46,60,5);
+        $numeros_O = randomGen(61,75,5);
+
+        //ahora guardamos los numeros por filas
+        $fila1 = [];
+        $fila2 = [];
+        $fila3 = [];
+        $fila4 = [];
+        $fila5 = [];
+
+        array_push($fila1, $numeros_B[0], $numeros_I[0], $numeros_N[0], $numeros_G[0], $numeros_O[0] );
+        array_push($fila2, $numeros_B[1], $numeros_I[1], $numeros_N[1], $numeros_G[1], $numeros_O[1] );
+        array_push($fila3, $numeros_B[2], $numeros_I[2], $numeros_N[2], $numeros_G[2], $numeros_O[2] );
+        array_push($fila4, $numeros_B[3], $numeros_I[3], $numeros_N[3], $numeros_G[3], $numeros_O[3] );
+        array_push($fila5, $numeros_B[4], $numeros_I[4], $numeros_N[4], $numeros_G[4], $numeros_O[4] );
+
+        $final = [];
+
+        /*
+        for ($i=0; $i < 5; $i++) { 
+            array_push(${"fila1".$i}, $numeros_B[$i], $numeros_I[$i], $numeros_N[$i], $numeros_G[$i], $numeros_O[$i] );
+        }
+        */
+        $carton = array_merge($fila1, $fila2, $fila3, $fila4, $fila5);
+
+        //$final = implode(",", $carton);
+
+        array_push($final, $fila1, $fila2, $fila3, $fila4, $fila5);
+
+        return $final;
 
 
     }
