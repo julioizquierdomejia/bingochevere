@@ -461,10 +461,11 @@ class ClientController extends Controller
         
     }
 
-    public function editgame($id)
+    public function editgame($id_camp)
     {
         //
         $id = auth()->user()->id;
+
         $user_current = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('users.id', '=', $id)
@@ -485,7 +486,7 @@ class ClientController extends Controller
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
 
-        $campania = campaign::where('id', $id)->first();
+        $campania = campaign::where('id', $id_camp)->first();
 
         $users = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
