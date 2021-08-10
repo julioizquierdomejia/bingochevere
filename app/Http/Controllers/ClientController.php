@@ -87,7 +87,7 @@ class ClientController extends Controller
 
         //generacion de codigo
         //codigo fijo BGCH + id del usuario + id de la campaña + el id de la empresa (parent_id)
-        $codigo = 'BGCH-'.$user->parent_id.$campania.$request->id;
+        $codigo = 'BGCH-'.$user->parent_id.$campania->id.$request->id;
 
         //rangos
         /*
@@ -157,6 +157,7 @@ class ClientController extends Controller
         array_push($final, $fila1, $fila2, $fila3, $fila4, $fila5);
 
         if($carton == null){
+
             //grabamos lso datos en la table carton
             $carton = new Carton();
             
