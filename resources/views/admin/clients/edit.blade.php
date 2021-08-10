@@ -107,7 +107,7 @@
 
                                 <div class="form-group{{ $errors->has('logo_cliente') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-logo_cliente">{{ __('Logo de la empresa') }}</label>
-                                    <input type="file" name="logo_cliente" id="input-logo_cliente" class="form-control form-control-alternative{{ $errors->has('logo_cliente') ? ' is-invalid' : '' }}" placeholder="{{ __('Descripción de la Campaña') }}" value="{{ old('logo_cliente') }}">
+                                    <input type="file" name="logo_cliente" id="input-logo_cliente" class="form-control form-control-alternative{{ $errors->has('logo_cliente') ? ' is-invalid' : '' }}" value="{{ old('logo_cliente') }}">
 
                                     @if ($errors->has('logo_cliente'))
                                         <span class="invalid-feedback" role="alert">

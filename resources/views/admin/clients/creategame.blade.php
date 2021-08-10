@@ -90,6 +90,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="favcolor-text" class="form-control-label">Elija un color de texto</label>
+                                    <input type="color" id="favcolor-text" name="color-text" value="#000000"><br><br>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="form-control-label">Status de la Campaña</label>
                                     <div class="custom-control custom-radio mb-3">
                                       <input type="radio" id="isActive" name="status" class="custom-control-input" value="1" checked>

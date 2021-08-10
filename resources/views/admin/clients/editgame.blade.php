@@ -67,6 +67,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="favcolor-text" class="form-control-label">Elija un color para su campaña</label>
+                                    <input type="color" id="favcolor-text" name="color_text" value="{{$campania->color_text}}"><br><br>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="form-control-label" for="input-url">{{ __('URL para crear cartones') }} <i class="far fa-copy fa-lg text-danger ml-2"></i></label>
                                     <input type="text" name="url_register" id="input-url" class="form-control form-control-alternative clipboard" value="{{ $campania->url_register }}">
                                 </div>

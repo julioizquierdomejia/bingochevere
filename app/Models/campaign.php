@@ -18,6 +18,7 @@ class campaign extends Model
         'status',
         'cant',
         'color',
+        'color_text',
 
     ];
 

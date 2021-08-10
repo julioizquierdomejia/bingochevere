@@ -267,7 +267,7 @@
 
         @if($user_current->role_id == 3)
             <div class="row mt-5">
-                <div class="col-xl-5 mb-5 mb-xl-0">
+                <div class="col-xl-6 mb-5 mb-xl-0">
                     <div class="card shadow">
                         <div class="card-header border-0">
                             <div class="row align-items-center">
@@ -277,8 +277,13 @@
                                     <div>
                                         <form>
                                             @csrf
-                                            <a href="#" class="btn btn-primary text-white" data-toggle="tooltip" data-placement="top" title="Crear Carton de Bingo" id="generar_bingo" disabled><i class="fas fa-plus-circle"></i> Generar Carton de bingo</a>
 
+                                            @if($carton == null)
+                                                <a href="#" class="btn btn-primary text-white" data-toggle="tooltip" data-placement="top" title="Crear Carton de Bingo" id="generar_bingo" disabled><i class="fas fa-plus-circle"></i> Generar Carton de bingo</a>
+                                            @else
+                                                <a href="#" class="btn btn-success text-white" data-toggle="tooltip" data-placement="top" title="Crear Carton de Bingo" id="generar_bingo" disabled><i class="far fa-eye"></i>Ver Mi Carton de Bingo</a>
+                                            @endif
+                                            
                                             <a href="" download='{{$user_current->name}}.png' class="btn btn-success text-white" id="download"><i class="fas fa-plus-circle"></i> Descargar Carton</a>
 
                                         </form>
@@ -286,6 +291,7 @@
 
 
                                     <div class="table-responsive mt-5" id="carton_completo">
+
                                         <!-- Projects table -->
                                         <div class="carton bg-gray" id="capture" style="height: 790px; width: 560px;">
                                             <div id="take">
@@ -297,6 +303,7 @@
                                                     <tr class="fila4"></tr>
                                                     <tr class="fila5"></tr>
                                                 </table>
+                                                <div id="codigo" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 189px; top:221px; font-size: 22px; text-align: center;"></div>
                                             </div>
                                         </div>
                                         
@@ -309,18 +316,7 @@
                     </div>
                 </div>
 
-                <div class="col-xl-7">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h3 class="mb-5">Mi carton de Bingo</h3>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
+                
             </div>
 
             <div id="ver">
@@ -383,6 +379,8 @@
                     method: 'POST',
                     data:{
                         _token:$('input[name="_token"]').val(),
+                        id: '{{$user_current->id}}',
+                        campania_id: '{{$campania->id}}',
                     }
                 }).done(function(res){
                     //alert(res)
@@ -404,7 +402,11 @@
                             $('.fila5').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[4][i] +'</td>');
                         }
 
+
+
                     }
+
+                    $('#codigo').html(res[0][5]);
 
                     $('#download').show();
                     $('#generar_bingo').hide();

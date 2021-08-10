@@ -22,7 +22,8 @@ class CreateCampaignsTable extends Migration
             $table->string('logo_central');
             $table->string('url_register')->nullable();
             $table->integer('cant');
-            $table->string('color');
+            $table->string('color')->nullable();
+            $table->string('color_text')->nullable();
 
             $table->integer('status');
 

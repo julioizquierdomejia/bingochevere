@@ -6,6 +6,7 @@ use App\Http\Requests\ValidationFormRequest_creargame;
 
 use App\Models\User;
 use App\Models\campaign;
+use App\Models\Carton;
 use Illuminate\Support\Facades\DB;
 
 use Intervention\Image\ImageManager;
@@ -59,44 +60,47 @@ class ClientController extends Controller
             ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
             ->first();
 
+        //revisamos si tiene este usuario carton o no
+        $carton = DB::table('cartons')
+                ->where('cartons.user_id','=', $user_current->id)
+                ->first();
 
-        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania'));
+        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton'));
     }
 
     //public function createbingo($id)
     public function createbingo(Request $request)
     {
-        
+
+        $user = DB::table('users')
+                ->where('users.id', '=', $request->id)
+                ->first();
+
+        //creamos un carton para ver si tiene uno generado
+        $carton = DB::table('cartons')
+                ->where('cartons.user_id', '=', $user->id)
+                ->first();
+
+        //generacion de codigo
+        //codigo fijo BGCH + id del usuario + id de la campaña + el id de la empresa (parent_id)
+        $codigo = 'BGCH-'.$user->parent_id.$request->campania_id.$request->id;
+
         //rangos
+        /*
         $b_range = range(1, 15);
         $i_range = range(16, 30);
         $n_range = range(31, 45);
         $g_range = range(46, 60);
         $o_range = range(61, 75);
+        */
 
         $range = [];
-
-        /*
-        foreach (range(0, 15 - 1) as $i) {
-            while(in_array($num = mt_Rand(1, 5), $range));
-            $range[] = $num;
-        }
-        dd($range);*/
-
-        
-        //echo $aleatorio;
 
         function randomGen($min, $max, $quantity) {
             $numbers = range($min, $max);
             shuffle($numbers);
             return array_slice($numbers, 0, $quantity);
         }
-
-        $numeros_B = randomGen(1,15,5);
-        $numeros_I = randomGen(16,30,5);
-        $numeros_N = randomGen(31,45,5);
-        $numeros_G = randomGen(46,60,5);
-        $numeros_O = randomGen(61,75,5);
 
         //ahora guardamos los numeros por filas
         $fila1 = [];
@@ -105,11 +109,35 @@ class ClientController extends Controller
         $fila4 = [];
         $fila5 = [];
 
-        array_push($fila1, $numeros_B[0], $numeros_I[0], $numeros_N[0], $numeros_G[0], $numeros_O[0] );
-        array_push($fila2, $numeros_B[1], $numeros_I[1], $numeros_N[1], $numeros_G[1], $numeros_O[1] );
-        array_push($fila3, $numeros_B[2], $numeros_I[2], $numeros_N[2], $numeros_G[2], $numeros_O[2] );
-        array_push($fila4, $numeros_B[3], $numeros_I[3], $numeros_N[3], $numeros_G[3], $numeros_O[3] );
-        array_push($fila5, $numeros_B[4], $numeros_I[4], $numeros_N[4], $numeros_G[4], $numeros_O[4] );
+
+        if($carton == null){
+            $numeros_B = randomGen(1,15,5);
+            $numeros_I = randomGen(16,30,5);
+            $numeros_N = randomGen(31,45,5);
+            $numeros_G = randomGen(46,60,5);
+            $numeros_O = randomGen(61,75,5);
+
+            array_push($fila1, $numeros_B[0], $numeros_I[0], $numeros_N[0], $numeros_G[0], $numeros_O[0], $codigo );
+            array_push($fila2, $numeros_B[1], $numeros_I[1], $numeros_N[1], $numeros_G[1], $numeros_O[1], $codigo );
+            array_push($fila3, $numeros_B[2], $numeros_I[2], $numeros_N[2], $numeros_G[2], $numeros_O[2], $codigo );
+            array_push($fila4, $numeros_B[3], $numeros_I[3], $numeros_N[3], $numeros_G[3], $numeros_O[3], $codigo );
+            array_push($fila5, $numeros_B[4], $numeros_I[4], $numeros_N[4], $numeros_G[4], $numeros_O[4], $codigo );
+
+
+        }else{
+            $numeros_B = explode(',', $carton->fila1);
+            $numeros_I = explode(',', $carton->fila2);
+            $numeros_N = explode(',', $carton->fila3);
+            $numeros_G = explode(',', $carton->fila4);
+            $numeros_O = explode(',', $carton->fila5);
+
+            array_push($fila1, $numeros_B[0], $numeros_B[1], $numeros_B[2], $numeros_B[3], $numeros_B[4], $codigo );
+            array_push($fila2, $numeros_I[0], $numeros_I[1], $numeros_I[2], $numeros_I[3], $numeros_I[4], $codigo );
+            array_push($fila3, $numeros_N[0], $numeros_N[1], $numeros_N[2], $numeros_N[3], $numeros_N[4], $codigo );
+            array_push($fila4, $numeros_G[0], $numeros_G[1], $numeros_G[2], $numeros_G[3], $numeros_G[4], $codigo );
+            array_push($fila5, $numeros_O[0], $numeros_O[1], $numeros_O[2], $numeros_O[3], $numeros_O[4], $codigo );
+        }
+
 
         $final = [];
 
@@ -118,11 +146,28 @@ class ClientController extends Controller
             array_push(${"fila1".$i}, $numeros_B[$i], $numeros_I[$i], $numeros_N[$i], $numeros_G[$i], $numeros_O[$i] );
         }
         */
-        $carton = array_merge($fila1, $fila2, $fila3, $fila4, $fila5);
+        //$carton = array_merge($fila1, $fila2, $fila3, $fila4, $fila5);
 
         //$final = implode(",", $carton);
 
         array_push($final, $fila1, $fila2, $fila3, $fila4, $fila5);
+
+        if($carton == null){
+            //grabamos lso datos en la table carton
+            $carton = new Carton();
+            
+            $carton->fila1 = implode(',', $fila1);
+            $carton->fila2 = implode(',', $fila2);
+            $carton->fila3 = implode(',', $fila3);
+            $carton->fila4 = implode(',', $fila4);
+            $carton->fila5 = implode(',', $fila5);
+            $carton->codigo = $codigo;
+            $carton->user_id = $request->id;
+            $carton->empresa_id = $user->parent_id;
+            $carton->campaign_id = $request->campania_id;
+
+            $carton->save();
+        }
 
         return $final;
 
@@ -299,6 +344,7 @@ class ClientController extends Controller
         $campania->status = $request->statusCamapania;
         $campania->cant = $request->cant;
         $campania->color = $request->color;
+        $campania->color_text = $request->color_text;
         //$campania->url_register = $ruta_register;
         $campania->save();
 
@@ -538,6 +584,7 @@ class ClientController extends Controller
             //'background_design' => $request->input('background_design'),
             'cant' => $request->input('cant'),
             'color' => $request->input('color'),
+            'color_text' => $request->input('color_text'),
             'status' => $request->input('statusCamapania'),
         ]);
 

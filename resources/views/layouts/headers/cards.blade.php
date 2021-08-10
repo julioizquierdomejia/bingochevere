@@ -207,15 +207,24 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <h1 class="text-white">Hola, {{$user_current->name}}</h1>
-                        <p class="text-white">
-                            Muy pronto estarás viviendo una experiencia muy Chévere.
+                        <h1 class="" style="color:{{$campania->color_text}}">Hola, {{$user_current->name}}</h1>
+                        @if($carton == null)
+                            <p class="" style="font-size: 20px; font-weight: bold; color:{{$campania->color_text}}">
+                                Muy pronto estarás viviendo una experiencia muy Chévere.
+                                <br>
+                                Para ello te invitamos a que Generes tu carton de Bingo y
+                                <br>
+                                luego lo descargues para que puedas disfrutar de este juego en la fecha y hora correspondiente.
+                            </p>
+                        @else
+                            <p class="" style="font-size: 20px; font-weight: bold; color:{{$campania->color_text}}">
+                            Ya tienes un carton generado
                             <br>
-                            Para ello te invitamos a que Generes tu carton de Bingo y
+                            Para la Campaá {{$campania->name}}
                             <br>
-                            luego lo descargues para que puedas disfrutar de este juego en la fecha y hora correspondiente.
+                            Solo debes de darle al boton ver mi carto
                         </p>
-                        
+                        @endif
                     </div>
                 </div>
 
