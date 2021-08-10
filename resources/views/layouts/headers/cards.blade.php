@@ -217,10 +217,10 @@
                                 luego lo descargues para que puedas disfrutar de este juego en la fecha y hora correspondiente.
                             </p>
                         @else
-                            <p class="" style="font-size: 20px; font-weight: bold; color:{{$campania->color_text}}">
-                            Ya tienes un carton generado
+                            <p class="" style="font-size: 20px; color:{{$campania->color_text}}">
+                            Ya tienes un carton generado, Para la Campaña
                             <br>
-                            Para la Campaá {{$campania->name}}
+                            <span style="font-weight: bold;"> {{$campania->name}}</span>
                             <br>
                             Solo debes de darle al boton ver mi carto
                         </p>

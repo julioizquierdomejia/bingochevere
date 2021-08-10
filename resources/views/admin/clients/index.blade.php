@@ -380,7 +380,6 @@
                     data:{
                         _token:$('input[name="_token"]').val(),
                         id: '{{$user_current->id}}',
-                        campania_id: '{{$campania->id}}',
                     }
                 }).done(function(res){
                     //alert(res)

@@ -76,6 +76,10 @@ class ClientController extends Controller
                 ->where('users.id', '=', $request->id)
                 ->first();
 
+        $campania = DB::table('campaign_user')
+                ->where('campaign_user.user_id', '=', $user->parent_id)
+                ->first();
+
         //creamos un carton para ver si tiene uno generado
         $carton = DB::table('cartons')
                 ->where('cartons.user_id', '=', $user->id)
@@ -83,7 +87,7 @@ class ClientController extends Controller
 
         //generacion de codigo
         //codigo fijo BGCH + id del usuario + id de la campaña + el id de la empresa (parent_id)
-        $codigo = 'BGCH-'.$user->parent_id.$request->campania_id.$request->id;
+        $codigo = 'BGCH-'.$user->parent_id.$campania.$request->id;
 
         //rangos
         /*
@@ -164,7 +168,7 @@ class ClientController extends Controller
             $carton->codigo = $codigo;
             $carton->user_id = $request->id;
             $carton->empresa_id = $user->parent_id;
-            $carton->campaign_id = $request->campania_id;
+            $carton->campaign_id = $campania->id;
 
             $carton->save();
         }
