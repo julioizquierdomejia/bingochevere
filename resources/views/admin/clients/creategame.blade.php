@@ -90,7 +90,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="favcolor-text" class="form-control-label">Elija un color de texto</label>
+                                    <label for="favcolor-text" class="form-control-label">Elija un color de Texto</label>
                                     <input type="color" id="favcolor-text" name="color-text" value="#000000"><br><br>
                                 </div>
 
