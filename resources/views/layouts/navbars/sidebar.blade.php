@@ -88,6 +88,12 @@
                             <i class="ni ni-planet text-blue"></i> {{ __('Clientes') }}
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.games.index') }}">
+                            <i class="fas fa-puzzle-piece"></i> {{ __('Cartones Generados') }}
+                        </a>
+                    </li>
                 @endif
 
                 @if($user_current->role_id == 2)
