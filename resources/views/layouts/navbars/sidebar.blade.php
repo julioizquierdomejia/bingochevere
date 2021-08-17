@@ -112,34 +112,6 @@
                             </a>
                         </li>
                     @endif
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">
-                            <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
-                        </a>
-                    </li>
-                    -->
-                    
-                    
-
-                    <!--
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('map') }}">
-                            <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('table') }}">
-                          <i class="ni ni-bullet-list-67 text-default"></i>
-                          <span class="nav-link-text">Tables</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                        </a>
-                    </li>
-                    -->
                     
                 </ul>
                 <!-- Divider -->
