@@ -515,7 +515,9 @@ class ClientController extends Controller
 
         $user = User::all()->where('id', $id)->first();
 
-        return view('admin.clients.creategame', compact('users', 'user', 'user_current', 'trabajadores', 'campanias'));
+        $cartones = DB::table('cartons')->get();
+
+        return view('admin.clients.creategame', compact('users', 'user', 'user_current', 'trabajadores', 'campanias', 'cartones'));
 
     }
 
@@ -573,7 +575,9 @@ class ClientController extends Controller
 
         $user = User::where('id', $id)->first();
 
-        return view('admin.clients.edit', compact('user', 'users', 'user_current', 'trabajadores', 'campanias'));
+        $cartones = DB::table('cartons')->get();
+
+        return view('admin.clients.edit', compact('user', 'users', 'user_current', 'trabajadores', 'campanias', 'cartones'));
         
     }
 
