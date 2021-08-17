@@ -117,6 +117,7 @@
                 e.preventDefault();
 
                 $('#imagenFondo').attr('src', '');
+                $('#codigo').html('');
 
                 id = $(this).attr('id');
 
