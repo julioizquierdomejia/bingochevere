@@ -81,67 +81,74 @@
             -->
 
             <!-- Navigation -->
-            <ul class="navbar-nav">
-                @if($user_current->role_id == 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.clients.index') }}">
-                            <i class="ni ni-planet text-blue"></i> {{ __('Clientes') }}
-                        </a>
-                    </li>
+            @auth()
+                <ul class="navbar-nav">
+                    @if($user_current->role_id == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.clients.index') }}">
+                                <i class="ni ni-planet text-blue"></i> {{ __('Clientes') }}
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.games.index') }}">
-                            <i class="fas fa-puzzle-piece"></i> {{ __('Cartones Generados') }}
-                        </a>
-                    </li>
-                @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.games.index') }}">
+                                <i class="fas fa-puzzle-piece"></i> {{ __('Cartones Generados') }}
+                            </a>
+                        </li>
+                    @endif
 
-                @if($user_current->role_id == 2)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.clients.index') }}">
-                            <i class="ni ni-planet text-blue"></i> {{ __('Ver colaboradores') }}
-                        </a>
-                    </li>
-                @endif
+                    @if($user_current->role_id == 2)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.clients.index') }}">
+                                <i class="ni ni-planet text-blue"></i> {{ __('Ver colaboradores') }}
+                            </a>
+                        </li>
+                    @endif
 
-                @if($user_current->role_id == 3)
+                    @if($user_current->role_id == 3)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.clients.index') }}">
+                                <i class="ni ni-planet text-blue"></i> {{ __('Crear Cartones') }}
+                            </a>
+                        </li>
+                    @endif
+                    <!--
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.clients.index') }}">
-                            <i class="ni ni-planet text-blue"></i> {{ __('Crear Cartones') }}
+                        <a class="nav-link" href="{{ route('home') }}">
+                            <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                         </a>
                     </li>
-                @endif
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
-                    </a>
-                </li>
-                -->
+                    -->
+                    
+                    
+
+                    <!--
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{{ route('map') }}">
+                            <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('table') }}">
+                          <i class="ni ni-bullet-list-67 text-default"></i>
+                          <span class="nav-link-text">Tables</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
+                        </a>
+                    </li>
+                    -->
+                    
+                </ul>
+                <!-- Divider -->
+            @endauth
+
+            @guest()
                 
-                
-
-                <!--
-                <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('map') }}">
-                        <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
-                      <i class="ni ni-bullet-list-67 text-default"></i>
-                      <span class="nav-link-text">Tables</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
-                    </a>
-                </li>
-                -->
-                
-            </ul>
-            <!-- Divider -->
+            @endguest
+            
             
         </div>
     </div>
