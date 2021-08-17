@@ -26,6 +26,7 @@
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
+            <script>window.location = "/admin/clientes";</script>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
