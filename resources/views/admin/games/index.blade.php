@@ -69,7 +69,7 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <div class="carton bg-gray" id="capture" style="height: 790px; width: 560px;">
+                        <div class="carton" id="capture" style="height: 790px; width: 560px;">
                             <div id="take">
 
                                 <img src="" id="imagenFondo" style="width:560px; height:auto; position: absolute;">
