@@ -28,7 +28,10 @@ class GameController extends Controller
     public function index()
     {
         //
+
+
         $id = auth()->user()->id;
+
         $user_current = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('users.id', '=', $id)
@@ -67,7 +70,7 @@ class GameController extends Controller
 
         $cartones = DB::table('cartons')
                 ->join('users', 'cartons.user_id', '=', 'users.id')
-                ->join('campaigns', 'cartons.campaign_id', '=', 'campaigns.id')
+                ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
                 ->select('users.*', 'cartons.*', 'campaigns.name as nombre_camapnia')
                 ->get();
 

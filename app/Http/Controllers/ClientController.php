@@ -179,21 +179,21 @@ class ClientController extends Controller
 
     }
 
-    public function vercarton(Request $request)
+    public function vercarton(Request $request) // el request trae el ID del carton
     {
-
-        $user = DB::table('users')
-                ->where('users.id', '=', $request->id)
-                ->first();
-
 
         //creamos un carton para ver si tiene uno generado
         $carton = DB::table('cartons')
                 ->where('cartons.id', '=', $request->id)
                 ->first();
 
+
+        $user = DB::table('users')
+                ->where('users.id', '=', $carton->user_id)
+                ->first();
+
         $campania = DB::table('campaigns')
-                ->where('campaigns.id', '=', $carton->campaign_id)
+                ->where('campaigns.id', '=', $user->campania_id)
                 ->first();
 
         //el diseño del fondo de la campaña

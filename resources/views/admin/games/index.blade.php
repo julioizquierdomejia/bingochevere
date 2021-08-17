@@ -36,7 +36,7 @@
                                             {{$carton->codigo}}
                                         </td>
                                         <td>
-                                            {{$carton->name}}
+                                            {{$carton->id}} - {{$carton->name}}
                                         </td>
                                         <td>
                                             {{$carton->nombre_camapnia}}
@@ -115,6 +115,8 @@
             $('.verCarton').click(function(e){
 
                 e.preventDefault();
+
+                $('#imagenFondo').attr('src', '');
 
                 id = $(this).attr('id');
 
