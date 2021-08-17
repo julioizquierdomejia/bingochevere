@@ -65,7 +65,9 @@ class ClientController extends Controller
                 ->where('cartons.user_id','=', $user_current->id)
                 ->first();
 
-        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton'));
+        $cartones = DB::table('cartons')->get();
+
+        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
     }
 
     //public function createbingo($id)
