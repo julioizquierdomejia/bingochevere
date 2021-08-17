@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('admin/clientes/crearcarton', [App\Http\Controllers\ClientController::class, 'createbingo'])->name('admin.clients.createbingo');
 
-	Route::post('admin/clientes/crearcarton', [App\Http\Controllers\ClientController::class, 'vercarton'])->name('admin.clients.vercarton');
+	Route::post('admin/clientes/ver', [App\Http\Controllers\ClientController::class, 'vercarton'])->name('admin.clients.vercarton');
 
 	//rutas para listados de cartones y jugadas
 	Route::get('admin/games', [App\Http\Controllers\GameController::class, 'index'])->name('admin.games.index');
