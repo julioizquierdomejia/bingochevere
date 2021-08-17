@@ -609,7 +609,9 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 2)
             ->get();
 
-        return view('admin.clients.editgame', compact('campania', 'users', 'user_current', 'empresa_current', 'trabajadores', 'campanias'));
+        $cartones = DB::table('cartons')->get();
+
+        return view('admin.clients.editgame', compact('campania', 'users', 'user_current', 'empresa_current', 'trabajadores', 'campanias', 'cartones'));
         
     }
 
