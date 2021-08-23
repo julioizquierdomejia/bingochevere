@@ -85,13 +85,13 @@
                                 --}}
 
                                 <div class="form-group">
-                                    <label for="favcolor" class="form-control-label">Elija un color para su campaña</label>
-                                    <input type="color" id="favcolor" name="color" value="#ff0000"><br><br>
+                                    <label for="color" class="form-control-label">Elija un color para su campaña</label>
+                                    <input type="color" id="favcolor" name="color"><br><br>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="favcolor-text" class="form-control-label">Elija un color de Texto</label>
-                                    <input type="color" id="favcolor-text" name="color-text" value="#000000"><br><br>
+                                    <label for="color_text" class="form-control-label">Elija un color de Texto</label>
+                                    <input type="color" id="favcolor-text" name="color_text"><br><br>
                                 </div>
 
                                 <div class="form-group">

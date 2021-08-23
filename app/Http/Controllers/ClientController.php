@@ -431,6 +431,7 @@ class ClientController extends Controller
     public function storegame(ValidationFormRequest_creargame $request)
     {
 
+
         //ruta del storage para las imagenes
         //$ruta = storage_path() . '/background_bingo/';
         $ruta = 'assets/img/background_bingo/';
@@ -629,15 +630,13 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         //
+
         $user = User::where('id', $id)->first();
 
         $nombre_imagen_logo = '';
         $ruta = 'assets/img/logos_clientes/';
 
         if ($request->hasFile('logo_cliente')) { // el fondo del diseño
-
-            //consultamos si este registro ya tiene una imagen en la base de datos
-            File::delete($ruta.$user->logo_cliente);
 
             $nombre_imagen_logo =  time()."_".request()->file('logo_cliente')->getClientOriginalName();//Aqui se genera el nombre de la imagen
         
@@ -646,6 +645,20 @@ class ClientController extends Controller
         
             //grabamos la imagen en el storage public
             Image::make($imagen)->save($ruta.$nombre_imagen_logo, 60);
+
+            //Revisamos si es que el usuario tienen una imagen registrada
+            if($user->logo_cliente == null){
+                $user->update([
+                    'logo_cliente' => $nombre_imagen_logo,
+                ]);                
+            }else{
+                //consultamos si este registro ya tiene una imagen en la base de datos
+                File::delete($ruta.$user->logo_cliente);
+
+                $user->update([
+                    'logo_cliente' => $nombre_imagen_logo,
+                ]);
+            }
 
         }
 
@@ -676,8 +689,6 @@ class ClientController extends Controller
             'contacto' => $request->input('contacto'),
             'area' => $request->input('area'),
             'telefono' => $request->input('telefono'),
-            'logo_cliente' => $nombre_imagen_logo,
-
             //'url_register' => $ruta_register,
         ]);
 
@@ -696,8 +707,11 @@ class ClientController extends Controller
 
         $empresa_current = User::Where('id', $user_current->parent_id)->first();
 
+        $cartones = DB::table('cartons')->get();
+
         //return redirect()->back();
-        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores'));
+        return redirect('/admin/clientes');
+        //return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'cartones'));
 
     }
 
