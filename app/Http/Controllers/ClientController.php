@@ -197,22 +197,11 @@ class ClientController extends Controller
 
             $carton->save();
 
-            $camp=campaign::where('id', '=', $campania->id)->first();
-            $camp->cartones = $cantidad_de_cartones;
-
-
-            $camp->save();
-
-            /*
-            $camp = campaigns::findOrFail($campania->id);
-            dd($camp);
-
-            $camp->cartones = (int)$cantidad_de_cartones;
-            $camp->update();
-            */
-
-
         }
+
+        $camp=campaign::where('id', '=', $campania->id)->first();
+        $camp->cartones = $cantidad_de_cartones;
+        $camp->save();
 
         return $final;
 
@@ -242,15 +231,6 @@ class ClientController extends Controller
         //generacion de codigo
         //obtenemos el codigo del carton
         $codigo = $carton->codigo;
-
-        //rangos
-        /*
-        $b_range = range(1, 15);
-        $i_range = range(16, 30);
-        $n_range = range(31, 45);
-        $g_range = range(46, 60);
-        $o_range = range(61, 75);
-        */
 
         $range = [];
 
@@ -299,15 +279,6 @@ class ClientController extends Controller
 
         $final = [];
 
-        /*
-        for ($i=0; $i < 5; $i++) { 
-            array_push(${"fila1".$i}, $numeros_B[$i], $numeros_I[$i], $numeros_N[$i], $numeros_G[$i], $numeros_O[$i] );
-        }
-        */
-        //$carton = array_merge($fila1, $fila2, $fila3, $fila4, $fila5);
-
-        //$final = implode(",", $carton);
-
         array_push($final, $fila1, $fila2, $fila3, $fila4, $fila5);
 
         if($carton == null){
@@ -333,7 +304,6 @@ class ClientController extends Controller
 
             $camp->save();
         }
-
 
 
         return $final;
