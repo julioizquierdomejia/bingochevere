@@ -328,6 +328,12 @@ class ClientController extends Controller
             $carton->save();
         }
 
+        $camp=campaign::where('id', '=', $campania->id)->first();
+        $camp->cartones = $cantidad_de_cartones;
+
+
+        $camp->save();
+
         return $final;
 
 
@@ -526,7 +532,7 @@ class ClientController extends Controller
             ->get();
         
         $cartones = DB::table('cartons')->get();
-        
+
         return redirect('admin/clientes');
 
     }
