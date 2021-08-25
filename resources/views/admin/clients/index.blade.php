@@ -21,6 +21,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
+
                             <!-- Projects table -->
                             <table class="table align-items-center table-flush" id="table_clients">
 
@@ -107,10 +108,10 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <span class="mr-2">60%</span>
+                                                <span class="mr-2">{{ number_format($camp->cartones * 100 / $camp->cant, 2) }}</span>
                                                 <div>
                                                     <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%; background-color: {{$camp->color}};"></div>
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%; background-color: {{$camp->color}};"></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -406,6 +407,7 @@
                     }
 
                     $('#codigo').html(res[0][5]);
+
 
                     $('#download').show();
                     $('#generar_bingo').hide();

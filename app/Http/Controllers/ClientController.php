@@ -14,6 +14,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Route;
+
+
 use File;
 
 
@@ -27,7 +30,6 @@ class ClientController extends Controller
     public function index()
     {
         //
-
         $id = auth()->user()->id;
         $user_current = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
@@ -55,6 +57,17 @@ class ClientController extends Controller
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
 
+        //relacion de campañas por cliente
+        $cartones_count = DB::table('campaigns')
+            ->join('campaign_user', 'campaigns.id', '=', 'campaign_user.campaign_id')
+            ->join('users', 'campaign_user.user_id', '=', 'users.id')
+            ->join('cartons', 'campaigns.id', '=', 'cartons.campaign_id')
+            //->select('campaigns.*', 'users.name as nombre_cliente')
+            ->select(DB::raw('count(cartons.campaign_id) as user_count'))
+            ->get();
+
+        //dd($cartones_count);
+
         $campania = DB::table('users')
             ->where('users.id', '=', $user_current->id)
             ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
@@ -66,6 +79,7 @@ class ClientController extends Controller
                 ->first();
 
         $cartones = DB::table('cartons')->get();
+
 
         return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
     }
@@ -86,6 +100,14 @@ class ClientController extends Controller
         $carton = DB::table('cartons')
                 ->where('cartons.user_id', '=', $user->id)
                 ->first();
+
+        //creamos un carton para ver si tiene uno generado
+        $cartones = DB::table('cartons')
+                ->where('cartons.campaign_id', '=', $campania->id)
+                ->get();
+
+        $cantidad_de_cartones = $cartones->count() + 1;
+
 
         //generacion de codigo
         //codigo fijo BGCH + id del usuario + id de la campaña + el id de la empresa (parent_id)
@@ -160,7 +182,7 @@ class ClientController extends Controller
 
         if($carton == null){
 
-            //grabamos lso datos en la table carton
+            //grabamos los datos en la table carton
             $carton = new Carton();
             
             $carton->fila1 = implode(',', $fila1);
@@ -174,6 +196,22 @@ class ClientController extends Controller
             $carton->campaign_id = $campania->id;
 
             $carton->save();
+
+            $camp=campaign::where('id', '=', $campania->id)->first();
+            $camp->cartones = $cantidad_de_cartones;
+
+
+            $camp->save();
+
+            /*
+            $camp = campaigns::findOrFail($campania->id);
+            dd($camp);
+
+            $camp->cartones = (int)$cantidad_de_cartones;
+            $camp->update();
+            */
+
+
         }
 
         return $final;
@@ -457,6 +495,7 @@ class ClientController extends Controller
             //grabamos la imagen en el storage public
             Image::make($imagen)->save($ruta.$nombre_imagen, 80);
         }
+
 
         $campania = new campaign();
         $campania->name = $request->name;

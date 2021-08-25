@@ -19,6 +19,7 @@ class campaign extends Model
         'cant',
         'color',
         'color_text',
+        'cartones',
 
     ];
 
