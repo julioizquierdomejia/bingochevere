@@ -365,7 +365,9 @@ class ClientController extends Controller
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
 
-        return view('admin.clients.create', compact('users', 'user_current', 'trabajadores', 'campanias'));
+        $cartones = DB::table('cartons')->get();
+
+        return view('admin.clients.create', compact('users', 'user_current', 'trabajadores', 'campanias', 'cartones'));
     }
 
     public function register(ValidationformRequest $request)
@@ -460,6 +462,8 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 2)
             ->get();
 
+        $cartones = DB::table('cartons')->get();
+
         //return view('admin.clients.index', compact('users', 'campanias'));
         return redirect('admin/clientes');
 
@@ -520,6 +524,8 @@ class ClientController extends Controller
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', '=', 2)
             ->get();
+        
+        $cartones = DB::table('cartons')->get();
         
         return redirect('admin/clientes');
 
