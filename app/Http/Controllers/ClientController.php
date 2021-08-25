@@ -326,13 +326,15 @@ class ClientController extends Controller
             $carton->campaign_id = $campania->id;
 
             $carton->save();
+
+            $camp=campaign::where('id', '=', $campania->id)->first();
+            $camp->cartones = $cantidad_de_cartones;
+
+
+            $camp->save();
         }
 
-        $camp=campaign::where('id', '=', $campania->id)->first();
-        $camp->cartones = $cantidad_de_cartones;
 
-
-        $camp->save();
 
         return $final;
 
