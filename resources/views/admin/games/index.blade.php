@@ -17,39 +17,46 @@
                             
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <!-- Projects table -->
-                        <table id="table_clients" class="table align-items-center table-flush" style="width:100%">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="table-responsive">
+                                <!-- Projects table -->
+                                <table id="table_clients" class="table align-items-center table-flush" style="width:100%">
 
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Codigo</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Campaña</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($cartones as $carton)
-                                    <tr>
-                                        <td scope="row">
-                                            {{$carton->codigo}}
-                                        </td>
-                                        <td>
-                                            {{$carton->id}} - {{$carton->name}}
-                                        </td>
-                                        <td>
-                                            {{$carton->nombre_camapnia}}
-                                        </td>
-                                        
-                                        <td>
-                                            <a href="" class="btn btn-primary verCarton" id="{{$carton->id}}"><i class="far fa-eye mr-2"></i> ver</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Codigo</th>
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Campaña</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($cartones as $carton)
+                                            <tr>
+                                                <td scope="row">
+                                                    {{$carton->codigo}}
+                                                </td>
+                                                <td>
+                                                    {{$carton->id}} - {{$carton->name}}
+                                                </td>
+                                                <td>
+                                                    {{$carton->nombre_camapnia}}
+                                                </td>
+                                                
+                                                <td>
+                                                    <a href="" class="btn btn-primary verCarton" id="{{$carton->id}}"><i class="far fa-eye mr-2"></i> ver</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -97,6 +104,12 @@
     <script type="text/javascript" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <!--script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script-->
+
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+
+    
+
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 
@@ -108,7 +121,10 @@
         
         $(document).ready(function(){
 
-            $('#table_clients').DataTable();
+            $('#table_clients').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
 
             
             //al hacer click boton vercarton

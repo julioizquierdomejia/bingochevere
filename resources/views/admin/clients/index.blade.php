@@ -20,55 +20,63 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
 
-                            <!-- Projects table -->
-                            <table class="table align-items-center table-flush" id="table_clients">
+                        <div class="card">
+                            <div class="card-body">
+                                
+                                <div class="table-responsive">
+                                    <!-- Projects table -->
+                                    <table class="table align-items-center table-flush" id="table_clients">
 
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Contacto</th>
-                                        <th scope="col">contactos</th>
-                                        <th scope="col">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($users as $user)
-                                        <tr>
-                                            <th scope="row">
-                                                {{$user->name}}
-                                            </th>
-                                            <td>
-                                                @if($user->contacto == null)
-                                                    <span class="text-light">No hay contacto registrado</span>
-                                                @else
-                                                    <span class="text-primary">{{$user->contacto}}</span>
-                                                @endif
-                                            </td>
-                                            <!--td>
-                                                0
-                                            </td-->
-                                            <td>
-                                                <b>{{$user->telefono}}</b> / {{$user->email}}
-                                            </td>
-                                            <td>
-                                                <a href=" {{route('admin.clients.edit', $user->id )}} " class="btn btn-sm btn-warning" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
-                                                    <i class="far fa-edit"></i></a>
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Contacto</th>
+                                                <th scope="col">contactos</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($users as $user)
+                                                <tr>
+                                                    <th scope="row">
+                                                        {{$user->name}}
+                                                    </th>
+                                                    <td>
+                                                        @if($user->contacto == null)
+                                                            <span class="text-light">No hay contacto registrado</span>
+                                                        @else
+                                                            <span class="text-primary">{{$user->contacto}}</span>
+                                                        @endif
+                                                    </td>
+                                                    <!--td>
+                                                        0
+                                                    </td-->
+                                                    <td>
+                                                        <b>{{$user->telefono}}</b> / {{$user->email}}
+                                                    </td>
+                                                    <td>
+                                                        <a href=" {{route('admin.clients.edit', $user->id )}} " class="btn btn-sm btn-warning" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                            <i class="far fa-edit"></i></a>
 
-                                                <a href=" {{route('admin.clients.creategame', $user->id )}} " class="btn btn-sm btn-success" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Crear Juego">
-                                                    <i class="fas fa-puzzle-piece"></i></a>
+                                                        <a href=" {{route('admin.clients.creategame', $user->id )}} " class="btn btn-sm btn-success" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Crear Juego">
+                                                            <i class="fas fa-puzzle-piece"></i></a>
 
-                                                {{--
-                                                <a href=" {{route('admin.clients.show', $user->id )}} " class="btn btn-sm btn-warning" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Ver Juegos">
-                                                    <i class="fas fa-chess"></i></a>
-                                                --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                                        {{--
+                                                        <a href=" {{route('admin.clients.show', $user->id )}} " class="btn btn-sm btn-warning" id="{{$user->id}}" data-toggle="tooltip" data-placement="top" title="Ver Juegos">
+                                                            <i class="fas fa-chess"></i></a>
+                                                        --}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
                         </div>
+
+                        
                     </div>
                 </div>
 
@@ -86,124 +94,132 @@
                                 --}}
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center table-flush" id="table_clients">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Cliente</th>
-                                        <th scope="col">Campaña</th>
-                                        <th scope="col">Jugadores listos</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($campanias as $camp)
-                                    <tr>
-                                        <th scope="row">
-                                            {{$camp->nombre_cliente}}
-                                        </th>
-                                        <td>
-                                            {{$camp->name}}
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="mr-2">{{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%</span>
-                                                <div>
-                                                    <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%; background-color: {{$camp->color}};"></div>
+                        
+                        <div class="card">
+                            
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <!-- Projects table -->
+                                    <table class="table align-items-center table-flush" id="table_campanias">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col">Campaña</th>
+                                                <th scope="col">Jugadores listos</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($campanias as $camp)
+                                            <tr>
+                                                <th scope="row">
+                                                    {{$camp->nombre_cliente}}
+                                                </th>
+                                                <td>
+                                                    {{$camp->name}}
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">{{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%</span>
+                                                        <div>
+                                                            <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%; background-color: {{$camp->color}};"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="row-register">
-                                            <a class="btn btn-sm btn-success text-white boton_copiar">
-                                                    <i class="far fa-copy"></i>
+                                                </td>
+                                                <td class="row-register">
+                                                    <a class="btn btn-sm btn-success text-white boton_copiar">
+                                                            <i class="far fa-copy"></i>
 
-                                            <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-warning" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
-                                                    <i class="far fa-edit"></i></a>
+                                                    <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-warning" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
+                                                            <i class="far fa-edit"></i></a>
 
-                                            <input type="text" name="" id="" value="{{$camp->url_register}}" class="url_registro" style="opacity:0;">
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    {{--
-                                    <tr>
-                                        <th scope="row">
-                                            Facebook
-                                        </th>
-                                        <td>
-                                            5,480
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="mr-2">70%</span>
-                                                <div>
-                                                    <div class="progress">
-                                                    <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                                                    <input type="text" name="" id="" value="{{$camp->url_register}}" class="url_registro" style="opacity:0;">
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            {{--
+                                            <tr>
+                                                <th scope="row">
+                                                    Facebook
+                                                </th>
+                                                <td>
+                                                    5,480
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">70%</span>
+                                                        <div>
+                                                            <div class="progress">
+                                                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            Google
-                                        </th>
-                                        <td>
-                                            4,807
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="mr-2">80%</span>
-                                                <div>
-                                                    <div class="progress">
-                                                    <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    Google
+                                                </th>
+                                                <td>
+                                                    4,807
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">80%</span>
+                                                        <div>
+                                                            <div class="progress">
+                                                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            Instagram
-                                        </th>
-                                        <td>
-                                            3,678
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="mr-2">75%</span>
-                                                <div>
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    Instagram
+                                                </th>
+                                                <td>
+                                                    3,678
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">75%</span>
+                                                        <div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            twitter
-                                        </th>
-                                        <td>
-                                            2,645
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <span class="mr-2">30%</span>
-                                                <div>
-                                                    <div class="progress">
-                                                    <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    twitter
+                                                </th>
+                                                <td>
+                                                    2,645
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span class="mr-2">30%</span>
+                                                        <div>
+                                                            <div class="progress">
+                                                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    --}}
-                                </tbody>
-                            </table>
+                                                </td>
+                                            </tr>
+                                            --}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -337,6 +353,13 @@
     <script type="text/javascript" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <!--script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script-->
+
+    <!--script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script-->
+
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+
+
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 
@@ -346,6 +369,16 @@
 
     <script type="text/javascript">
         $(document).ready( function () {
+
+            $('#table_clients').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
+
+            $('#table_campanias').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
 
             $('.boton_copiar').click(function(){
                 valor = $(this).parent().find('input').val();
