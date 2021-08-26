@@ -375,10 +375,12 @@
                 autoWidth: false
             });
 
+            /*
             $('#table_campanias').DataTable({
                 responsive: true,
                 autoWidth: false
             });
+            */
 
             $('.boton_copiar').click(function(){
                 valor = $(this).parent().find('input').val();
