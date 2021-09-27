@@ -8,7 +8,7 @@
     <div class="col-xl-6">
         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
             <li class="nav-item">
-                <a href="https://alexbarbierb.com/" class="nav-link" target="_blank">Alex Barbier - Pásala Chevere</a>
+                <a href="https://alexbarbierb.com/" class="nav-link" target="_blank">Alex Barbier - Pásala Chévere</a>
             </li>
             <!--li class="nav-item">
                 <a href="#" class="nav-link" target="_blank">Rhino Consulting</a>
