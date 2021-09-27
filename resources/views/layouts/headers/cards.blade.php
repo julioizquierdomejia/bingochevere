@@ -208,7 +208,7 @@
                             <p class="" style="font-size: 20px; font-weight: bold; color:{{$campania->color_text}}">
                                 Muy pronto estarás viviendo una experiencia muy Chévere.
                                 <br>
-                                Para ello te invitamos a que Generes tu carton de Bingo y
+                                Para ello te invitamos a que generes tu carton de Bingo y
                                 <br>
                                 luego lo descargues para que puedas disfrutar de este juego en la fecha y hora correspondiente.
                             </p>
