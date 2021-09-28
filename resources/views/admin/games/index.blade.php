@@ -36,7 +36,7 @@
                                         @foreach($cartones as $carton)
                                             <tr>
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id}}"><i class="far fa-eye mr-2"></i></a>
+                                                    <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id}}"><i class="far fa-eye"></i></a>
                                                 </td>
                                                 <td scope="row">
                                                     {{$carton->codigo}}
