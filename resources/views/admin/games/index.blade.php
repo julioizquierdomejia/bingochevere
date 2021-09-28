@@ -123,7 +123,7 @@
 
             
             $('#table_clients').DataTable({
-                responsive: true,
+                //responsive: true,
                 autoWidth: false
             });
             
