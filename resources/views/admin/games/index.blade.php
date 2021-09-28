@@ -26,15 +26,18 @@
 
                                     <thead class="thead-light">
                                         <tr>
+                                            <th scope="col">Acciones</th>
                                             <th scope="col">Codigo</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Campaña</th>
-                                            <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($cartones as $carton)
                                             <tr>
+                                                <td>
+                                                    <a href="" class="btn btn-primary verCarton" id="{{$carton->id}}"><i class="far fa-eye mr-2"></i></a>
+                                                </td>
                                                 <td scope="row">
                                                     {{$carton->codigo}}
                                                 </td>
@@ -43,10 +46,6 @@
                                                 </td>
                                                 <td>
                                                     {{$carton->nombre_camapnia}}
-                                                </td>
-                                                
-                                                <td>
-                                                    <a href="" class="btn btn-primary verCarton" id="{{$carton->id}}"><i class="far fa-eye mr-2"></i> ver</a>
                                                 </td>
                                             </tr>
                                         @endforeach
