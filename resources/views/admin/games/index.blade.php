@@ -121,12 +121,12 @@
         
         $(document).ready(function(){
 
-            /*
+            
             $('#table_clients').DataTable({
                 responsive: true,
                 autoWidth: false
             });
-            */
+            
 
             
             //al hacer click boton vercarton
