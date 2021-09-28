@@ -26,7 +26,7 @@
 
                                     <thead class="thead-light">
                                         <tr>
-                                            <th scope="col">Acciones</th>
+                                            <th scope="col"><i class="far fa-eye"></i></th>
                                             <th scope="col">Codigo</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Campaña</th>
