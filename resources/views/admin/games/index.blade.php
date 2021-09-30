@@ -118,6 +118,8 @@
 
     <script type="text/javascript">
         
+        
+
         $(document).ready(function(){
 
             
@@ -129,7 +131,8 @@
 
             
             //al hacer click boton vercarton
-            $('.verCarton').click(function(e){
+            //$('.verCarton').click(function(e){
+            $(document).on('click', '.verCarton', function(e) {
 
                 e.preventDefault();
 
