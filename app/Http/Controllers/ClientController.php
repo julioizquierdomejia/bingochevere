@@ -210,6 +210,50 @@ class ClientController extends Controller
 
     }
 
+    public function consultarcamp(Request $request)
+    {
+        //return $request->id;
+        $user_campanias = DB::table('cartons')
+                            ->where('campaign_id', '=', $request->id)
+                            ->get();
+        $cant = $user_campanias->count();
+
+        return $cant;
+    }
+
+    public function borrarcamp(Request $request)
+    {
+        //return $request->id;
+        $user_campanias = DB::table('cartons')
+                            ->where('campaign_id', '=', $request->id)
+                            ->get();
+        //contamos la cantidad de cartones que se han creado en esta campaña
+        $cant = $user_campanias->count();
+
+        //creamos un array para poder traer todos los
+        //usuarios que existen dentro de esta campaña
+
+        $usuarios = [];
+        foreach ($user_campanias as $user) {
+            //array_push($usuarios, $user->user_id);
+
+            $users = DB::table('users')
+            ->where('id', '=', $user->user_id)
+            ->first();
+
+            $carton = DB::table('cartons')
+                ->where('cartons.user_id', '=', $request->id)
+                ->first();
+
+            $users->delete();
+            $carton->delete();
+
+        }
+
+        return 'ok';
+    }
+
+
     public function vercarton(Request $request) // el request trae el ID del carton
     {
 

@@ -130,89 +130,20 @@
                                                 </td>
                                                 <td class="row-register">
                                                     <a class="btn btn-sm btn-success text-white boton_copiar">
-                                                            <i class="far fa-copy"></i>
+                                                            <i class="far fa-copy"></i></a>
 
                                                     <a href=" {{route('admin.clients.editgame', $camp->id )}} " class="btn btn-sm btn-warning" id="{{$camp->id}}" data-toggle="tooltip" data-placement="top" title="Editar">
                                                             <i class="far fa-edit"></i></a>
 
+                                                    <a class="btn btn-sm btn-danger text-white eliminar-camp"  id="{{$camp->id}}" name='{{$camp->name}}'>
+                                                            <i class="far fa-trash-alt"></i></a>
+
                                                     <input type="text" name="" id="" value="{{$camp->url_register}}" class="url_registro" style="opacity:0;">
+
                                                 </td>
                                             </tr>
                                             @endforeach
-                                            {{--
-                                            <tr>
-                                                <th scope="row">
-                                                    Facebook
-                                                </th>
-                                                <td>
-                                                    5,480
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="mr-2">70%</span>
-                                                        <div>
-                                                            <div class="progress">
-                                                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Google
-                                                </th>
-                                                <td>
-                                                    4,807
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="mr-2">80%</span>
-                                                        <div>
-                                                            <div class="progress">
-                                                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    Instagram
-                                                </th>
-                                                <td>
-                                                    3,678
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="mr-2">75%</span>
-                                                        <div>
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    twitter
-                                                </th>
-                                                <td>
-                                                    2,645
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="mr-2">30%</span>
-                                                        <div>
-                                                            <div class="progress">
-                                                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            --}}
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -375,14 +306,16 @@
                 autoWidth: false
             });
 
-            /*
+            
             $('#table_campanias').DataTable({
                 responsive: true,
                 autoWidth: false
             });
-            */
+            
 
-            $('.boton_copiar').click(function(){
+            //boton para copiar la URL de creacion de usuarios
+            //$('.boton_copiar').click(function(){
+            $(document).on('click', '.boton_copiar', function(){
                 valor = $(this).parent().find('input').val();
                 $('.clipboard').val(valor);
                 $('.clipboard').focus();
@@ -397,6 +330,10 @@
                   showConfirmButton: false,
                   timer: 1500
                 })
+            })
+
+            //Boton para eliminar campañs
+            $(document).on('click', '.eliminar_camp', function(){
 
             })
 
@@ -495,6 +432,64 @@
 
 
             })
+
+
+            //ajax para consultar campañas
+            $(document).on('click', '.eliminar-camp', function(){
+
+                id = $(this).attr('id');
+                camp = $(this).attr('name');
+
+                $.ajax({
+                    url: "{{ route('admin.clients.consultarcamp') }}",
+                    method : 'POST',
+                    data:{
+                        _token:$('input[name="_token"]').val(),
+                        id: id, //'{{$user_current->id}}',
+                    }
+                }).done(function(res){
+                    //alert('Al eliminar esta campaña estamos elimmando a ' + res + ' Usuarios que han generado sus cartones')
+
+                    Swal.fire({
+                      title: camp,
+                      text: 'Al eliminar esta campaña estamos elimmando a ' + res + ' Usuarios que han generado sus cartones',
+                      icon: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#39BD4F',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Si, Eliminar',
+                      cancelButtonText: 'Cancelar',
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+
+                        //ajax Para eliminar campañas
+                        $.ajax({
+                            url: "{{ route('admin.clients.borrarcamp') }}",
+                            method : 'DELETED',
+                            data:{
+                                _token:$('input[name="_token"]').val(),
+                                id: id, //'{{$user_current->id}}',
+                            }
+                        }).done(function(res){
+                            Swal.fire(
+                              'Campaña Eliminada',
+                              res + ' Usuarios Eliminados',
+                              'success'
+                            )
+                        })
+
+                        
+                      }
+                    })
+
+
+                })
+            })
+
+
+
+            
+
         })
 
     </script>

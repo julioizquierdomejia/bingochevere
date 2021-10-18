@@ -214,11 +214,11 @@
                             </p>
                         @else
                             <p class="" style="font-size: 20px; color:{{$campania->color_text}}">
-                            Ya tienes un carton generado, Para la Campaña
+                            Ya tienes un cartón generado, para la campaña
                             <br>
                             <span style="font-weight: bold;"> {{$campania->name}}</span>
                             <br>
-                            Solo debes de darle al boton ver mi carto
+                            Solo debes de darle al botón ver mi cartón
                         </p>
                         @endif
                     </div>
