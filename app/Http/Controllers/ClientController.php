@@ -221,8 +221,10 @@ class ClientController extends Controller
         return $cant;
     }
 
-    public function borrarcamp(Request $request)
+    public function borrarcamp(Request $request) //El request trae datos de campaña
     {
+
+
         //return $request->id;
         $user_campanias = DB::table('cartons')
                             ->where('campaign_id', '=', $request->id)
@@ -233,10 +235,25 @@ class ClientController extends Controller
         //creamos un array para poder traer todos los
         //usuarios que existen dentro de esta campaña
 
+        $users = DB::table('users')
+                    ->where('parent_id', '=', $request->empresa_id)
+                    ->get();
+
         $usuarios = [];
-        foreach ($user_campanias as $user) {
+
+        foreach($users as $user){
+            array_push($usuarios, $user->id);
+        }
+
+        //foreach ($user_campanias as $user) {
             //array_push($usuarios, $user->user_id);
 
+            //$cartones = Carton::find($user->id)->delete();
+            //$users = User::find($user->user_id)->delete();
+            //$campania = campaign::find($user->campaign_id)->delete();
+            
+
+            /*
             $users = DB::table('users')
             ->where('id', '=', $user->user_id)
             ->first();
@@ -247,10 +264,10 @@ class ClientController extends Controller
 
             $users->delete();
             $carton->delete();
+            */
+        //}
 
-        }
-
-        return 'ok';
+        return $request->id;
     }
 
 

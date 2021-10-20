@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('admin/clientes/crearcarton', [App\Http\Controllers\ClientController::class, 'createbingo'])->name('admin.clients.createbingo');
 
-	Route::post('admin/clientes/borrarcamp', [App\Http\Controllers\ClientController::class, 'borrarcamp'])->name('admin.clients.borrarcamp');
+	Route::delete('admin/clientes/borrarcamp', [App\Http\Controllers\ClientController::class, 'borrarcamp'])->name('admin.clients.borrarcamp');
 
 	Route::post('admin/clientes/consultarcamp', [App\Http\Controllers\ClientController::class, 'consultarcamp'])->name('admin.clients.consultarcamp');
 

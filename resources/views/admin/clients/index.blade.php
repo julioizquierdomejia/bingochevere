@@ -465,7 +465,7 @@
                         //ajax Para eliminar campañas
                         $.ajax({
                             url: "{{ route('admin.clients.borrarcamp') }}",
-                            method : 'DELETED',
+                            type : 'DELETE',
                             data:{
                                 _token:$('input[name="_token"]').val(),
                                 id: id, //'{{$user_current->id}}',
