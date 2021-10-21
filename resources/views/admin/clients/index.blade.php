@@ -120,12 +120,18 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center">
-                                                        <span class="mr-2">{{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%</span>
+                                                        <span class="mr-2">
+                                                            {{$camp->cartones}} de {{$camp->cant}}
+                                                            {{-- number_format($camp->cartones * 100 / $camp->cant, 2) --}}{{--%--}}
+                                                        </span>
                                                         <div>
                                                             <div class="progress">
                                                             <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ number_format($camp->cartones * 100 / $camp->cant, 2) }}%; background-color: {{$camp->color}};"></div>
                                                             </div>
                                                         </div>
+                                                        <span class="ml-2">
+                                                            {{number_format($camp->cartones * 100 / $camp->cant, 2) }}%
+                                                        </span>
                                                     </div>
                                                 </td>
                                                 <td class="row-register">
