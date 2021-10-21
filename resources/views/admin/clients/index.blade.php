@@ -40,7 +40,7 @@
                                             @foreach($users as $user)
                                                 <tr>
                                                     <th scope="row">
-                                                        {{$user->id}}-{{$user->name}}
+                                                        {{$user->name}}
                                                     </th>
                                                     <td>
                                                         @if($user->contacto == null)
@@ -116,7 +116,7 @@
                                                     {{$camp->nombre_cliente}}
                                                 </th>
                                                 <td>
-                                                    {{$camp->id}}-{{$camp->name}}
+                                                    {{$camp->name}}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center">
