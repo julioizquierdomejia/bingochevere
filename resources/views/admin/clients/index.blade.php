@@ -40,7 +40,7 @@
                                             @foreach($users as $user)
                                                 <tr>
                                                     <th scope="row">
-                                                        {{$user->name}}
+                                                        {{$user->id}}-{{$user->name}}
                                                     </th>
                                                     <td>
                                                         @if($user->contacto == null)
@@ -116,7 +116,7 @@
                                                     {{$camp->nombre_cliente}}
                                                 </th>
                                                 <td>
-                                                    {{$camp->name}}
+                                                    {{$camp->id}}-{{$camp->name}}
                                                 </td>
                                                 <td>
                                                     <div class="d-flex align-items-center">
@@ -462,6 +462,8 @@
                     }).then((result) => {
                       if (result.isConfirmed) {
 
+                        //console.log('Eliminando registros');
+
                         //ajax Para eliminar campañas
                         $.ajax({
                             url: "{{ route('admin.clients.borrarcamp') }}",
@@ -471,9 +473,10 @@
                                 id: id, //'{{$user_current->id}}',
                             }
                         }).done(function(res){
+                            //console.log('Se elimino');
                             Swal.fire(
                               'Campaña Eliminada',
-                              res + ' Usuarios Eliminados',
+                              res,
                               'success'
                             )
                         })

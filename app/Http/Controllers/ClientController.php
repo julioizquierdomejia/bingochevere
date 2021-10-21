@@ -221,7 +221,7 @@ class ClientController extends Controller
         return $cant;
     }
 
-    public function borrarcamp(Request $request) //El request trae datos de campaña
+    public function borrarcamp(Request $request) //El request es al campaña
     {
 
 
@@ -236,38 +236,48 @@ class ClientController extends Controller
         //usuarios que existen dentro de esta campaña
 
         $users = DB::table('users')
-                    ->where('parent_id', '=', $request->empresa_id)
-                    ->get();
+                            ->where('campania_id', '=', $request->id)
+                            ->get();
 
         $usuarios = [];
 
-        foreach($users as $user){
-            array_push($usuarios, $user->id);
+
+        if($user_campanias->isEmpty()){
+
+            $campania = campaign::find((int)$request->id)->delete();
+            return 'Campaña Vacia - ELIMINADA';
+
+        }else{
+
+            foreach ($user_campanias as $user) {
+                $cartones = Carton::find($user->id)->delete();
+            }
+
+            foreach ($users as $id_users) {
+                array_push($usuarios, $id_users->id);
+                $usuario = User::find($id_users->id)->delete();
+                
+            }
+
+            $campania = campaign::find((int)$request->id)->delete();
+
+            return count($usuarios) . ' Usuarios y '. $user_campanias->count() . ' Cartones generados, Han sido Eliminados';
+
         }
 
-        //foreach ($user_campanias as $user) {
+/*
+        
+        foreach ($user_campanias as $user) {
             //array_push($usuarios, $user->user_id);
-
-            //$cartones = Carton::find($user->id)->delete();
-            //$users = User::find($user->user_id)->delete();
-            //$campania = campaign::find($user->campaign_id)->delete();
+            $campania = campaign::find($user->campaign_id)->delete();
             
+        }
 
-            /*
-            $users = DB::table('users')
-            ->where('id', '=', $user->user_id)
-            ->first();
+        
+        */
 
-            $carton = DB::table('cartons')
-                ->where('cartons.user_id', '=', $request->id)
-                ->first();
+        return $request->campaign_id;
 
-            $users->delete();
-            $carton->delete();
-            */
-        //}
-
-        return $request->id;
     }
 
 
