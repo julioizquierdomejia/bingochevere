@@ -12,7 +12,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="mb-0">Listado de Cartones</h3>
+                                <h3 class="mb-0">Listado de {{$cartones->count()}} cartones generados de {{$trabajadores->count()}} usuarios registrados</h3>
                             </div>
                             
                         </div>
@@ -33,8 +33,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($cartones as $carton)
-                                            <tr>
+                                        @foreach($trabajadores as $carton)
+                                            @if($carton->codigo == null)
+                                                <tr style="background-color:#FFCECE">
+                                            @else
+                                                <tr>
+                                            @endif
+                                            
                                                 <td>
                                                     <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id}}"><i class="far fa-eye"></i></a>
                                                 </td>
@@ -42,7 +47,7 @@
                                                     {{$carton->codigo}}
                                                 </td>
                                                 <td>
-                                                    {{$carton->id}} - {{$carton->name}}
+                                                    {{--$carton->id--}}{{$carton->name}}
                                                 </td>
                                                 <td>
                                                     {{$carton->nombre_camapnia}}

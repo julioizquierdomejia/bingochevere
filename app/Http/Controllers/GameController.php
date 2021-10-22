@@ -46,10 +46,21 @@ class GameController extends Controller
             ->get();
 
         //Relacion de trabajdores tipo 3
+        /*
         $trabajadores = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', '=', 3)
             ->get();
+        */
+
+        $trabajadores = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->where('role_user.role_id', '=', 3)
+            ->leftJoin('cartons', 'users.id', '=', 'cartons.user_id')
+            ->leftJoin('campaigns', 'users.campania_id', '=', 'campaigns.id')
+            ->select('users.*', 'cartons.*', 'campaigns.name as nombre_camapnia')
+            ->get();
+
 
         //relacion de campañas por cliente
         $campanias = DB::table('campaigns')
