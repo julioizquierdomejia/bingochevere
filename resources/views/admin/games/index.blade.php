@@ -59,7 +59,7 @@
                                                     </td>
                                                 @endif
                                                 <td>
-                                                    {{$carton->id_usuario}} {{$carton->name}}
+                                                    {{--$carton->id_usuario--}} {{$carton->name}}
                                                 </td>
                                                 <td>
                                                     {{$carton->nombre_camapnia}}
