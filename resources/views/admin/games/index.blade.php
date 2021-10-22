@@ -43,9 +43,15 @@
                                                 <td>
                                                     <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id}}"><i class="far fa-eye"></i></a>
                                                 </td>
-                                                <td scope="row">
-                                                    {{$carton->codigo}}
-                                                </td>
+                                                @if($carton->codigo == null)
+                                                    <td scope="row">
+                                                        No generó cartón
+                                                    </td>
+                                                @else
+                                                    <td scope="row">
+                                                        {{$carton->codigo}}
+                                                    </td>
+                                                @endif
                                                 <td>
                                                     {{--$carton->id--}}{{$carton->name}}
                                                 </td>
