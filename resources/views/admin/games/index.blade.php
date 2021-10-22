@@ -42,7 +42,7 @@
                                             
                                                 <td>
                                                     
-                                                    <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id_usuario}}"><i class="far fa-eye"></i></a>
+                                                    <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id}}"><i class="far fa-eye"></i></a>
 
                                                     <a href="" class="btn btn-danger btn-sm borrarUser" id="{{$carton->id_usuario}}" name="{{$carton->name}}">
                                                         <i class="fas fa-trash"></i>
