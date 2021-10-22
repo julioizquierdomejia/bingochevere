@@ -58,7 +58,7 @@ class GameController extends Controller
             ->where('role_user.role_id', '=', 3)
             ->leftJoin('cartons', 'users.id', '=', 'cartons.user_id')
             ->leftJoin('campaigns', 'users.campania_id', '=', 'campaigns.id')
-            ->select('users.*', 'cartons.*', 'campaigns.name as nombre_camapnia')
+            ->select('users.*', 'cartons.*', 'campaigns.name as nombre_camapnia', 'users.id as id_usuario')
             ->get();
 
 

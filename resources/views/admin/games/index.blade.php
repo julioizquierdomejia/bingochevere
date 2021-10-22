@@ -41,7 +41,13 @@
                                             @endif
                                             
                                                 <td>
-                                                    <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id}}"><i class="far fa-eye"></i></a>
+                                                    
+                                                    <a href="" class="btn btn-primary btn-sm verCarton" id="{{$carton->id_usuario}}"><i class="far fa-eye"></i></a>
+
+                                                    <a href="" class="btn btn-danger btn-sm borrarUser" id="{{$carton->id_usuario}}" name="{{$carton->name}}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+
                                                 </td>
                                                 @if($carton->codigo == null)
                                                     <td scope="row">
@@ -53,7 +59,7 @@
                                                     </td>
                                                 @endif
                                                 <td>
-                                                    {{--$carton->id--}}{{$carton->name}}
+                                                    {{$carton->id_usuario}} {{$carton->name}}
                                                 </td>
                                                 <td>
                                                     {{$carton->nombre_camapnia}}
@@ -127,6 +133,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.1/html2canvas.min.js" integrity="sha512-RGZt6PJZ2y5mdkLGwExIfOMlzRdkMREWobAwzTX4yQV0zdZfxBaYLJ6nPuMd7ZPXVzBQL6XAJx0iDXHyhuTheQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
     <script type="text/javascript">
         
         
@@ -139,10 +146,45 @@
                 autoWidth: false
             });
             
-
-            
             //al hacer click boton vercarton
             //$('.verCarton').click(function(e){
+            $(document).on('click', '.borrarUser', function(e){
+
+                id = $(this).attr('id');
+                nombre = $(this).attr('name');
+
+
+                e.preventDefault();
+                Swal.fire({
+                  title: '¿Estas Seguro?',
+                  text: "De eliminar al usuario: " + nombre,
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, eliminar'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    //ajax Para eliminar usuario
+                    $.ajax({
+                        url: "{{ route('admin.user.borraruser') }}",
+                        type : 'DELETE',
+                        data:{
+                            _token:$('input[name="_token"]').val(),
+                            id: id, //'{{$user_current->id}}',
+                        }
+                    }).done(function(res){
+                        //console.log('Se elimino');
+                        Swal.fire(
+                          'Usuario Eliminado',
+                          res,
+                          'success'
+                        )
+                    })
+                  }
+                })
+            })
+
             $(document).on('click', '.verCarton', function(e) {
 
                 e.preventDefault();

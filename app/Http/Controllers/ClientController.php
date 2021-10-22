@@ -210,6 +210,30 @@ class ClientController extends Controller
 
     }
 
+    public function borraruser(Request $request)
+    {
+        //return $request->id;
+        //dd($request->id);
+
+        $carton = DB::table('cartons')
+                            ->where('user_id', '=', $request->id)
+                            //->select('cartons.id as id_carton')
+                            ->get();
+        
+        $cant = $carton->count();
+
+        if($carton->isEmpty()){
+            $usuario = User::find($request->id)->delete();
+        }else{
+            $cartones = Carton::find($carton[0]->id)->delete();
+            $usuario = User::find($request->id)->delete();
+        }
+
+        
+
+        //return $cant;
+    }
+
     public function consultarcamp(Request $request)
     {
         //return $request->id;
@@ -220,6 +244,8 @@ class ClientController extends Controller
 
         return $cant;
     }
+
+    
 
     public function borrarcamp(Request $request) //El request es al campaña
     {
