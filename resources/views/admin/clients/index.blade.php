@@ -13,7 +13,7 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class="mb-0">Clientes</h3>
+                                    <h3 class="mb-0">Clientes </h3>
                                 </div>
                                 <div class="col text-right">
                                     <a href="{{route('admin.clients.create')}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Crear Nuevo Cliente"><i class="fas fa-plus-circle"></i> Crear Cliente</a>
