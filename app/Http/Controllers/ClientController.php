@@ -69,7 +69,7 @@ class ClientController extends Controller
         //dd($cartones_count);
 
         $campania = DB::table('users')
-            ->where('users.id', '=', $user_current->id)
+            ->where('users.id', '=', $user_current->user_id)
             ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
             ->first();
 
@@ -80,6 +80,7 @@ class ClientController extends Controller
 
         $cartones = DB::table('cartons')->get();
 
+        //dd($user_current);
 
         return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
     }
