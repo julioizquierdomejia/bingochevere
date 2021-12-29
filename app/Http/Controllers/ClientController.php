@@ -75,7 +75,7 @@ class ClientController extends Controller
 
         //revisamos si tiene este usuario carton o no
         $carton = DB::table('cartons')
-                ->where('cartons.user_id','=', $user_current->id)
+                ->where('cartons.user_id','=', $user_current->user_id)
                 ->first();
 
         $cartones = DB::table('cartons')->get();
@@ -423,6 +423,8 @@ class ClientController extends Controller
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', '=', 2)
             ->get();
+
+            dd($users);
 
         $id = auth()->user()->id;
         $user_current = DB::table('users')

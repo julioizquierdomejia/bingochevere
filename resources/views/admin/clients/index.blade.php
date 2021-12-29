@@ -231,7 +231,6 @@
                                     <div>
                                         <form>
                                             @csrf
-
                                             @if($carton == null)
                                                 <a href="#" class="btn btn-primary text-white" data-toggle="tooltip" data-placement="top" title="Crear Carton de Bingo" id="generar_bingo" disabled><i class="fas fa-plus-circle"></i> Generar Carton de bingo</a>
                                             @else
@@ -358,7 +357,7 @@
                     method: 'POST',
                     data:{
                         _token:$('input[name="_token"]').val(),
-                        id: '{{$user_current->id}}',
+                        id: '{{$user_current->user_id}}',
                     }
                 }).done(function(res){
                     //alert(res)
