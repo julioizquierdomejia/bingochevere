@@ -424,7 +424,6 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 2)
             ->get();
 
-            dd($users);
 
         $id = auth()->user()->id;
         $user_current = DB::table('users')
