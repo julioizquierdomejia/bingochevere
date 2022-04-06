@@ -67,5 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 	//rutas para listados de cartones y jugadas
 	Route::get('admin/games', [App\Http\Controllers\GameController::class, 'index'])->name('admin.games.index');
 
+	Route::resource('/admin/music', 'App\Http\Controllers\MusicController');
+
 });
 
