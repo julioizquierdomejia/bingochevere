@@ -11,6 +11,7 @@ class campaign extends Model
 
     protected $fillable = [
         'name',
+        'type',
         'description',
         'background_design',
         'logo_central',

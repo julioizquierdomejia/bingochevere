@@ -57,6 +57,7 @@ class ClientController extends Controller
             ->select('campaigns.*', 'users.name as nombre_cliente')
             ->get();
 
+
         //relacion de campañas por cliente
         $cartones_count = DB::table('campaigns')
             ->join('campaign_user', 'campaigns.id', '=', 'campaign_user.campaign_id')
@@ -72,6 +73,7 @@ class ClientController extends Controller
             ->where('users.id', '=', $user_current->user_id)
             ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
             ->first();
+
 
         //revisamos si tiene este usuario carton o no
         $carton = DB::table('cartons')
@@ -89,9 +91,15 @@ class ClientController extends Controller
     public function createbingo(Request $request)
     {
 
+        //ubicamos el usuario current
         $user = DB::table('users')
                 ->where('users.id', '=', $request->id)
                 ->first();
+
+        //Traemos la campaña a la que este usuari pertenece
+        $type_campania = DB::table('campaigns')
+                            ->where('id', $user->campania_id)
+                            ->first();
 
         $campania = DB::table('campaign_user')
                 ->where('campaign_user.user_id', '=', $user->parent_id)
@@ -106,6 +114,16 @@ class ClientController extends Controller
         $cartones = DB::table('cartons')
                 ->where('cartons.campaign_id', '=', $campania->id)
                 ->get();
+
+        //traigo todas las canciones 
+        $canciones = DB::table('music')->get();
+
+        $array_canciones = [];
+
+        //metemos las canciones en un array en orden
+        foreach ($canciones as $key => $value) {
+            array_push($array_canciones, $value->name);
+        }
 
         $cantidad_de_cartones = $cartones->count() + 1;
 
@@ -146,11 +164,21 @@ class ClientController extends Controller
             $numeros_G = randomGen(46,60,5);
             $numeros_O = randomGen(61,75,5);
 
-            array_push($fila1, $numeros_B[0], $numeros_I[0], $numeros_N[0], $numeros_G[0], $numeros_O[0], $codigo );
-            array_push($fila2, $numeros_B[1], $numeros_I[1], $numeros_N[1], $numeros_G[1], $numeros_O[1], $codigo );
-            array_push($fila3, $numeros_B[2], $numeros_I[2], $numeros_N[2], $numeros_G[2], $numeros_O[2], $codigo );
-            array_push($fila4, $numeros_B[3], $numeros_I[3], $numeros_N[3], $numeros_G[3], $numeros_O[3], $codigo );
-            array_push($fila5, $numeros_B[4], $numeros_I[4], $numeros_N[4], $numeros_G[4], $numeros_O[4], $codigo );
+            
+            if ($type_campania->type == 1) {
+                array_push($fila1, $numeros_B[0], $numeros_I[0], $numeros_N[0], $numeros_G[0], $numeros_O[0], $codigo );
+                array_push($fila2, $numeros_B[1], $numeros_I[1], $numeros_N[1], $numeros_G[1], $numeros_O[1], $codigo );
+                array_push($fila3, $numeros_B[2], $numeros_I[2], $numeros_N[2], $numeros_G[2], $numeros_O[2], $codigo );
+                array_push($fila4, $numeros_B[3], $numeros_I[3], $numeros_N[3], $numeros_G[3], $numeros_O[3], $codigo );
+                array_push($fila5, $numeros_B[4], $numeros_I[4], $numeros_N[4], $numeros_G[4], $numeros_O[4], $codigo );
+            }else{
+                array_push($fila1, $array_canciones[$numeros_B[0]], $array_canciones[$numeros_B[1]], $array_canciones[$numeros_B[2]], $array_canciones[$numeros_B[3]], $array_canciones[$numeros_B[4]], $codigo );
+            array_push($fila2, $array_canciones[$numeros_I[0]], $array_canciones[$numeros_I[1]], $array_canciones[$numeros_I[2]], $array_canciones[$numeros_I[3]], $array_canciones[$numeros_I[4]], $codigo );
+            array_push($fila3, $array_canciones[$numeros_N[0]], $array_canciones[$numeros_N[1]], $array_canciones[$numeros_N[2]], $array_canciones[$numeros_N[3]], $array_canciones[$numeros_N[4]], $codigo );
+            array_push($fila4, $array_canciones[$numeros_G[0]], $array_canciones[$numeros_G[1]], $array_canciones[$numeros_G[2]], $array_canciones[$numeros_G[3]], $array_canciones[$numeros_G[4]], $codigo );
+            array_push($fila5, $array_canciones[$numeros_O[0]], $array_canciones[$numeros_O[1]], $array_canciones[$numeros_O[2]], $array_canciones[$numeros_O[3]], $array_canciones[$numeros_O[4]], $codigo );
+            }
+            
 
 
         }else{ //esto tambien sirve para visualzar el carton 
@@ -552,7 +580,6 @@ class ClientController extends Controller
     public function storegame(ValidationFormRequest_creargame $request)
     {
 
-
         //ruta del storage para las imagenes
         //$ruta = storage_path() . '/background_bingo/';
         $ruta = 'assets/img/background_bingo/';
@@ -582,6 +609,7 @@ class ClientController extends Controller
 
         $campania = new campaign();
         $campania->name = $request->name;
+        $campania->type = $request->type;
         $campania->description = $request->description;
         $campania->background_design = $nombre_imagen_disenio;
         $campania->logo_central = $nombre_imagen;
@@ -846,6 +874,7 @@ class ClientController extends Controller
         
         $campania->update([
             'name' => $request->input('name'),
+            'type' => $request->input('type'),
             'description' => $request->input('description'),
             //'background_design' => $request->input('background_design'),
             'cant' => $request->input('cant'),

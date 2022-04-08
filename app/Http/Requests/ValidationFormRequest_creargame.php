@@ -23,6 +23,7 @@ class ValidationFormRequest_creargame extends FormRequest
      */
     public function rules()
     {
+        
         return [
             //
             'name'  => 'required|min:1|max:30',

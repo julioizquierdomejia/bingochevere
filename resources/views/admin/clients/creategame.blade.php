@@ -28,6 +28,15 @@
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                    <select class="js-example-basic-single" name="type">
+                                      <option value="1">Bingo Clásico</option>
+                                      <option value="2">Bingo Musical</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="pl-lg-4">
+                                <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-name">{{ __('Nombre de la Campaña') }}</label>
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Nombre de la Campaña') }}" value="{{ old('name') }}"autofocus>
 
@@ -130,6 +139,8 @@
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.min.js"></script>
     <script src="{{ asset('argon') }}/vendor/chart.js/dist/Chart.extension.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script type="text/javascript">
         
         $('input[name=status]').change(function(){
@@ -138,6 +149,10 @@
           }else{ // Si es Boelta
             $('#status_campania').val('0')
           }
+        });
+
+        $( ".js-example-basic-single" ).select2({
+            theme: "bootstrap"
         });
 
     </script>
