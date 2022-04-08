@@ -45,7 +45,9 @@
                                         			<form action="" method="POST">
 	                                    				@csrf
 	                                    				<a href="{{ route('music.edit', $music) }}" class="btn btn-sm btn-info"><i class="far fa-edit"></i></a>
-	                                        			<a href="" class="btn btn-sm btn-warning delete" data-name='{{ $music->name }}' data-id='{{ $music->id }}'><i class="fas fa-trash-alt"></i></a>
+	                                        			{{-- 
+                                                        <a href="" class="btn btn-sm btn-warning delete" data-name='{{ $music->name }}' data-id='{{ $music->id }}'><i class="fas fa-trash-alt"></i></a>
+                                                         --}}
 	                                        		</form>
                                         			
                                         		</td>

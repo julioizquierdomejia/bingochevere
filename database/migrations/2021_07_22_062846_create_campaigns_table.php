@@ -17,6 +17,7 @@ class CreateCampaignsTable extends Migration
             $table->id();
 
             $table->string('name');
+            $table->integer('type');
             $table->string('description')->nullable();
             $table->string('background_design');
             $table->string('logo_central');
