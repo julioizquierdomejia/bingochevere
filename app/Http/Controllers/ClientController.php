@@ -44,6 +44,8 @@ class ClientController extends Controller
             ->where('role_user.role_id', '=', 2)
             ->get();
 
+
+
         //Relacion de trabajdores tipo 3
         $trabajadores = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
@@ -84,7 +86,19 @@ class ClientController extends Controller
 
         //dd($user_current);
 
-        return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
+        //return view('admin.clients.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
+        
+        if($user_current->role_id == 1){
+            return view('admin.clients.admin', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));    
+        }
+
+        if($user_current->role_id == 3){
+            return view('admin.clients.gamer', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
+        }
+        
+
+        
+
     }
 
     //public function createbingo($id)
