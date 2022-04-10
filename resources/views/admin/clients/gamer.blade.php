@@ -58,7 +58,15 @@
                                             <div id="take">
                                                 <img src="../assets/img/background_bingo/{{$campania->background_design}}" id="imagenFondo" style="width:1000px; height:auto; position: absolute;">
                                                 
-                                                    
+                                                    <table border="0" width="930px" style="border-collapse: collapse; position:absolute; top: 388px; left: 50px; font-weight: bold; text-align: center;">
+                                                        <tr class="fila1"></tr>
+                                                        <tr class="fila2"></tr>
+                                                        <tr class="fila3"></tr>
+                                                        <tr class="fila4"></tr>
+                                                        <tr class="fila5"></tr>
+                                                    </table>
+
+                                                    {{-- 
                                                     <table class="tabla table" id="tablaMusica" width='100%' border style="border-collapse: collapse; position:absolute; top: 388px; left: 50px; font-weight: bold; text-align: center;">
                                                     
                                                         <tr class="fila1"></tr>
@@ -67,8 +75,9 @@
                                                         <tr class="fila4"></tr>
                                                         <tr class="fila5"></tr>
                                                     </table>
+                                                     --}}
                                                 
-                                                <div id="codigo" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 189px; top:221px; font-size: 22px; text-align: center;"></div>
+                                                <div id="codigo" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 420px; top:213px; font-size: 22px; text-align: center;"></div>
                                             </div>
                                         </div>
                                     @endif
@@ -196,25 +205,21 @@
                         for (var i = 0; i < 5; i++) {
                             if (i == 2) {
 
-                                $('.fila1').append('<td>'+ res[0][i] +'</td>');
-                                $('.fila2').append('<td>'+ res[1][i] +'</td>');
-                                $('.fila3').append('<td opacity:0;">'+ res[2][i] +'</td>');
-                                $('.fila4').append('<td>'+ res[3][i] +'</td>');
-                                $('.fila5').append('<td>'+ res[4][i] +'</td>');
+                                $('.fila1').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[0][i] +'</td>');
+                                $('.fila2').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[1][i] +'</td>');
+                                $('.fila3').append('<td width="190px" style="padding:24px 16px 23px 16px; opacity:0;">'+ res[2][i] +'</td>');
+                                $('.fila4').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[3][i] +'</td>');
+                                $('.fila5').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[4][i] +'</td>');
                             }else{
-                                $('.fila1').append('<td>'+ res[0][i] +'</td>');
-                                $('.fila2').append('<td>'+ res[1][i] +'</td>');
-                                $('.fila3').append('<td>'+ res[2][i] +'</td>');
-                                $('.fila4').append('<td>'+ res[3][i] +'</td>');
-                                $('.fila5').append('<td>'+ res[4][i] +'</td>');
+                                $('.fila1').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[0][i] +'</td>');
+                                $('.fila2').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[1][i] +'</td>');
+                                $('.fila3').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[2][i] +'</td>');
+                                $('.fila4').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[3][i] +'</td>');
+                                $('.fila5').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[4][i] +'</td>');
                             }
                         }
                     } 
 
-                    //$("#tablaMusica").attr("width","500");
-                    $("#tablaMusica").css({"width":"1200px","color":"red"});
-                    $("#tablaMusica tr td").css({"padding":"36px 0 36px 0", "width":"100px;"});
-                    //$("#tablaMusica").attr("css", { backgroundColor: "gray" });
 
                     $('#codigo').html(res[0][5]);
 
