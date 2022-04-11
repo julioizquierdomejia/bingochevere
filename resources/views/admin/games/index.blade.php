@@ -92,19 +92,19 @@
                     </div>
                     <div class="table-responsive">
                         <!-- Projects table -->
-                        <div class="carton" id="capture" style="height: 790px; width: 560px;">
+                        <div class="carton" id="capture" style="height: 790px; width: 650px;">
                             <div id="take">
 
-                                <img src="" id="imagenFondo" style="width:560px; height:auto; position: absolute;">
+                                <img src="" id="imagenFondo" style="width:650px; height:auto; position: absolute;">
 
-                                <table class="tabla table table-borderless" id="tablaNumeros" style="position:absolute; top: 334px; width: 200px; left: 40px; font-weight: bold;">
+                                <table class="" id="tablaNumeros" style="position:absolute; top: 260px; width: 600px; left: 25px; font-weight: bold; font-size: 12px; text-align: center;">
                                     <tr class="fila1"></tr>
                                     <tr class="fila2"></tr>
                                     <tr class="fila3"></tr>
                                     <tr class="fila4"></tr>
                                     <tr class="fila5"></tr>
                                 </table>
-                                <div id="codigo" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 176px; top:198px; font-size: 22px; text-align: center;"></div>
+                                <div id="codigo" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 224px; top:140px; font-size: 22px; text-align: center;"></div>
                             </div>
                         </div>
                     </div>
@@ -215,17 +215,17 @@
                     for (var i = 0; i < 5; i++) {
 
                         if (i == 2) {
-                            $('.fila1').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[0][i] +'</td>');
-                            $('.fila2').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[1][i] +'</td>');
-                            $('.fila3').append('<td style="font-size: 43px; color: black; text-align: center; opacity:0;">'+ res[2][i] +'</td>');
-                            $('.fila4').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[3][i] +'</td>');
-                            $('.fila5').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[4][i] +'</td>');   
+                            $('.fila1').append('<td style="width:120px; padding:14px 0;">'+ res[0][i] +'</td>');
+                            $('.fila2').append('<td style="width:120px; padding:14px 0;">'+ res[1][i] +'</td>');
+                            $('.fila3').append('<td style="width:120px; padding:14px 0; opacity:0;">'+ res[2][i] +'</td>');
+                            $('.fila4').append('<td style="width:120px; padding:14px 0;">'+ res[3][i] +'</td>');
+                            $('.fila5').append('<td style="width:120px; padding:14px 0;">'+ res[4][i] +'</td>');   
                         }else{
-                            $('.fila1').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[0][i] +'</td>');
-                            $('.fila2').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[1][i] +'</td>');
-                            $('.fila3').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[2][i] +'</td>');
-                            $('.fila4').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[3][i] +'</td>');
-                            $('.fila5').append('<td style="font-size: 43px; color: black; text-align: center;">'+ res[4][i] +'</td>');
+                            $('.fila1').append('<td style="width:120px; padding:14px 0;">'+ res[0][i] +'</td>');
+                            $('.fila2').append('<td style="width:120px; padding:14px 0;">'+ res[1][i] +'</td>');
+                            $('.fila3').append('<td style="width:120px; padding:14px 0;">'+ res[2][i] +'</td>');
+                            $('.fila4').append('<td style="width:120px; padding:14px 0;">'+ res[3][i] +'</td>');
+                            $('.fila5').append('<td style="width:120px; padding:14px 0;">'+ res[4][i] +'</td>');
                         }
 
 

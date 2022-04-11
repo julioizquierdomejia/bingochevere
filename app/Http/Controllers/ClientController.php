@@ -196,17 +196,34 @@ class ClientController extends Controller
 
 
         }else{ //esto tambien sirve para visualzar el carton 
+            
             $numeros_B = explode(',', $carton->fila1);
             $numeros_I = explode(',', $carton->fila2);
             $numeros_N = explode(',', $carton->fila3);
             $numeros_G = explode(',', $carton->fila4);
             $numeros_O = explode(',', $carton->fila5);
 
+            /*
             array_push($fila1, $numeros_B[0], $numeros_B[1], $numeros_B[2], $numeros_B[3], $numeros_B[4], $codigo );
             array_push($fila2, $numeros_I[0], $numeros_I[1], $numeros_I[2], $numeros_I[3], $numeros_I[4], $codigo );
             array_push($fila3, $numeros_N[0], $numeros_N[1], $numeros_N[2], $numeros_N[3], $numeros_N[4], $codigo );
             array_push($fila4, $numeros_G[0], $numeros_G[1], $numeros_G[2], $numeros_G[3], $numeros_G[4], $codigo );
             array_push($fila5, $numeros_O[0], $numeros_O[1], $numeros_O[2], $numeros_O[3], $numeros_O[4], $codigo );
+            */
+
+            if ($type_campania->type == 1) {
+                array_push($fila1, $numeros_B[0], $numeros_I[0], $numeros_N[0], $numeros_G[0], $numeros_O[0], $codigo );
+                array_push($fila2, $numeros_B[1], $numeros_I[1], $numeros_N[1], $numeros_G[1], $numeros_O[1], $codigo );
+                array_push($fila3, $numeros_B[2], $numeros_I[2], $numeros_N[2], $numeros_G[2], $numeros_O[2], $codigo );
+                array_push($fila4, $numeros_B[3], $numeros_I[3], $numeros_N[3], $numeros_G[3], $numeros_O[3], $codigo );
+                array_push($fila5, $numeros_B[4], $numeros_I[4], $numeros_N[4], $numeros_G[4], $numeros_O[4], $codigo );
+            }else{
+                array_push($fila1, $array_canciones[$numeros_B[0]], $array_canciones[$numeros_I[0]], $array_canciones[$numeros_N[0]], $array_canciones[$numeros_G[0]], $array_canciones[$numeros_O[0]], $codigo );
+                array_push($fila2, $array_canciones[$numeros_B[1]], $array_canciones[$numeros_I[1]], $array_canciones[$numeros_N[1]], $array_canciones[$numeros_G[1]], $array_canciones[$numeros_O[1]], $codigo );
+                array_push($fila3, $array_canciones[$numeros_B[2]], $array_canciones[$numeros_I[2]], $array_canciones[$numeros_N[2]], $array_canciones[$numeros_G[2]], $array_canciones[$numeros_O[2]], $codigo );
+                array_push($fila4, $array_canciones[$numeros_B[3]], $array_canciones[$numeros_I[3]], $array_canciones[$numeros_N[3]], $array_canciones[$numeros_G[3]], $array_canciones[$numeros_O[3]], $codigo );
+                array_push($fila5, $array_canciones[$numeros_B[4]], $array_canciones[$numeros_I[4]], $array_canciones[$numeros_N[4]], $array_canciones[$numeros_G[4]], $array_canciones[$numeros_O[4]], $codigo );
+            }
         }
 
 
