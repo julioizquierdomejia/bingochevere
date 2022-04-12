@@ -40,9 +40,11 @@
                                                 
                                                     
                                                     {{-- 
-                                                    <table class="tabla table table-borderless" id="tablaNumeros" style="position:absolute; top: 355px; width: 200px; left: 50px; font-weight: bold;">
-                                                     --}}
+                                                    
                                                     <table border="" width="300px">
+                                                     --}}
+                                                    <table class="tabla table table-borderless" id="tablaNumeros" style="position:absolute; top: 355px; width: 200px; left: 50px; font-weight: bold;">
+                                                    
                                                         <tr class="fila1"></tr>
                                                         <tr class="fila2"></tr>
                                                         <tr class="fila3"></tr>
@@ -183,7 +185,9 @@
                 }).done(function(res){
                     //alert(res)
                     //console.log(res[0]);
+                    console.log("******************************");
                     console.log(res);
+                    console.log("******************************");
 
                     if({{ $campania->type }} == 1){
                         for (var i = 0; i < 5; i++) {

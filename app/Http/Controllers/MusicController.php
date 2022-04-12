@@ -122,6 +122,7 @@ class MusicController extends Controller
     {
         //
         //
+
         $users = DB::table('users')
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->where('role_user.role_id', '=', 2)
@@ -162,6 +163,11 @@ class MusicController extends Controller
     public function update(Request $request, Music $music)
     {
         //
+
+        $validatedData=$request->validate([
+            'name' => 'required|unique:music|max:30',
+        ]);
+
         $music->name = $request->name;
         $music->order = $request->order;
         $music->update();

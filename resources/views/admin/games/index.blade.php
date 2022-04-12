@@ -35,7 +35,7 @@
                                     <tbody>
                                         @foreach($trabajadores as $carton)
                                             @if($carton->codigo == null)
-                                                <tr style="background-color:#FFCECE">
+                                                {{-- <tr style="background-color:#FFCECE"> --}}
                                             @else
                                                 <tr>
                                             @endif

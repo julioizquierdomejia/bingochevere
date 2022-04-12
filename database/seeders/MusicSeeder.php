@@ -59,7 +59,7 @@ class MusicSeeder extends Seeder
         $music = new Music();$music->name = 'Eight Days a Week';$music->order =42;$music->save();
         $music = new Music();$music->name = 'Eleanor Rigby';$music->order =43;$music->save();
         $music = new Music();$music->name = 'Every Little Thing';$music->order =44;$music->save();
-        $music = new Music();$music->name = 'Everybodys Got Something to Hide Except Me My Monkey';$music->order =45;$music->save();
+        $music = new Music();$music->name = 'Everybodys Got Something to Hi';$music->order =45;$music->save();
         $music = new Music();$music->name = 'Everybodys Trying to Be My Baby';$music->order =46;$music->save();
         $music = new Music();$music->name = 'Fixing a Hole';$music->order =47;$music->save();
         $music = new Music();$music->name = 'Flying';$music->order =48;$music->save();
