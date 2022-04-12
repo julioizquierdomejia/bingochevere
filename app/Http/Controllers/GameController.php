@@ -74,6 +74,8 @@ class GameController extends Controller
             ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
             ->first();
 
+        
+
         //revisamos si tiene este usuario carton o no
         $carton = DB::table('cartons')
                 ->where('cartons.user_id','=', $user_current->id)
@@ -84,6 +86,7 @@ class GameController extends Controller
                 ->join('campaigns', 'users.campania_id', '=', 'campaigns.id')
                 ->select('users.*', 'cartons.*', 'campaigns.name as nombre_camapnia')
                 ->get();
+
 
         return view('admin.games.index', compact('users', 'campanias', 'user_current', 'empresa_current', 'trabajadores', 'campania', 'carton', 'cartones'));
     }

@@ -90,6 +90,8 @@
                             --}}
                         </div>
                     </div>
+                    
+
                     <div class="table-responsive">
                         <!-- Projects table -->
                         <div class="carton" id="capture" style="height: 790px; width: 650px;">
@@ -97,14 +99,27 @@
 
                                 <img src="" id="imagenFondo" style="width:650px; height:auto; position: absolute;">
 
-                                <table class="" id="tablaNumeros" style="position:absolute; top: 260px; width: 600px; left: 25px; font-weight: bold; font-size: 12px; text-align: center;">
+                                <table class="" id="tablaNumeros" style="position:absolute; top: 370px; width: 580px; left: 25px; font-weight: bold; font-size: 43px; text-align: center;">
                                     <tr class="fila1"></tr>
                                     <tr class="fila2"></tr>
                                     <tr class="fila3"></tr>
                                     <tr class="fila4"></tr>
                                     <tr class="fila5"></tr>
                                 </table>
-                                <div id="codigo" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 224px; top:140px; font-size: 22px; text-align: center;"></div>
+
+                                <table class="" id="tablaMusical" style="position:absolute; top: 260px; width: 600px; left: 24px; font-weight: bold; font-size: 12px; text-align: center;">
+                                    <tr class="fila1"></tr>
+                                    <tr class="fila2"></tr>
+                                    <tr class="fila3"></tr>
+                                    <tr class="fila4"></tr>
+                                    <tr class="fila5"></tr>
+                                </table>
+
+
+                                <div id="" class="codigoMusical" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 224px; top:140px; font-size: 22px; text-align: center;"></div>
+
+                                <div id="" class="codigoNormal" style="width:209px; height:auto; position: absolute; font-weight: bold; left: 204px; top:219px; font-size: 22px; text-align: center;"></div>
+
                             </div>
                         </div>
                     </div>
@@ -209,33 +224,69 @@
                         id: id, //'{{$user_current->id}}',
                     }
                 }).done(function(res){
-                    //alert(res)
+                    console.log(res)
                     //console.log(res[0]);
 
-                    for (var i = 0; i < 5; i++) {
+
+                    if (res[0][7] == 1 ) {
+                        $('#tablaMusical').css('opacity', 0);
+                        $('#tablaNumeros').css('opacity', 1);
+
+                        $('.codigoNormal').css('opacity', 1);
+                        $('.codigoMusical').css('opacity', 0);
+                        
+
+                        for (var i = 0; i < 5; i++) {
 
                         if (i == 2) {
-                            $('.fila1').append('<td style="width:120px; padding:14px 0;">'+ res[0][i] +'</td>');
-                            $('.fila2').append('<td style="width:120px; padding:14px 0;">'+ res[1][i] +'</td>');
-                            $('.fila3').append('<td style="width:120px; padding:14px 0; opacity:0;">'+ res[2][i] +'</td>');
-                            $('.fila4').append('<td style="width:120px; padding:14px 0;">'+ res[3][i] +'</td>');
-                            $('.fila5').append('<td style="width:120px; padding:14px 0;">'+ res[4][i] +'</td>');   
+                            $('.fila1').append('<td style="width:110px; padding:26px 0;">'+ res[0][i] +'</td>');
+                            $('.fila2').append('<td style="width:110px; padding:26px 0;">'+ res[1][i] +'</td>');
+                            $('.fila3').append('<td style="width:110px; padding:26px 0; opacity:0;">'+ res[2][i] +'</td>');
+                            $('.fila4').append('<td style="width:110px; padding:26px 0;">'+ res[3][i] +'</td>');
+                            $('.fila5').append('<td style="width:110px; padding:26px 0;">'+ res[4][i] +'</td>');   
                         }else{
-                            $('.fila1').append('<td style="width:120px; padding:14px 0;">'+ res[0][i] +'</td>');
-                            $('.fila2').append('<td style="width:120px; padding:14px 0;">'+ res[1][i] +'</td>');
-                            $('.fila3').append('<td style="width:120px; padding:14px 0;">'+ res[2][i] +'</td>');
-                            $('.fila4').append('<td style="width:120px; padding:14px 0;">'+ res[3][i] +'</td>');
-                            $('.fila5').append('<td style="width:120px; padding:14px 0;">'+ res[4][i] +'</td>');
+                            $('.fila1').append('<td style="width:110px; padding:26px 0;">'+ res[0][i] +'</td>');
+                            $('.fila2').append('<td style="width:110px; padding:26px 0;">'+ res[1][i] +'</td>');
+                            $('.fila3').append('<td style="width:110px; padding:26px 0;">'+ res[2][i] +'</td>');
+                            $('.fila4').append('<td style="width:110px; padding:26px 0;">'+ res[3][i] +'</td>');
+                            $('.fila5').append('<td style="width:110px; padding:26px 0;">'+ res[4][i] +'</td>');
                         }
 
+                    }
 
+                    }else{
+                        $('#tablaMusical').css('opacity', 1);
+                        $('#tablaNumeros').css('opacity', 0);
+
+                        $('.codigoNormal').css('opacity', 0);
+                        $('.codigoMusical').css('opacity', 1);
+
+                        for (var i = 0; i < 5; i++) {
+
+                        if (i == 2) {
+                            $('.fila1').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[0][i] +'</td>');
+                            $('.fila2').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[1][i] +'</td>');
+                            $('.fila3').append('<td style="width:120px; height:60px; padding:0 6px;  opacity:0;">'+ res[2][i] +'</td>');
+                            $('.fila4').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[3][i] +'</td>');
+                            $('.fila5').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[4][i] +'</td>');   
+                        }else{
+                            $('.fila1').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[0][i] +'</td>');
+                            $('.fila2').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[1][i] +'</td>');
+                            $('.fila3').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[2][i] +'</td>');
+                            $('.fila4').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[3][i] +'</td>');
+                            $('.fila5').append('<td style="width:120px; height:60px; padding:0 6px; ">'+ res[4][i] +'</td>');
+                        }
 
                     }
+                    }
+
+                    
 
                     $('#imagenFondo').attr('src', '../assets/img/background_bingo/'+res[0][6]);
                 
 
-                    $('#codigo').html(res[0][5]);
+                    $('.codigoNormal').html(res[0][5]);
+                    $('.codigoMusical').html(res[0][5]);
 
                     $('#download').show();
                     $('#generar_bingo').hide();

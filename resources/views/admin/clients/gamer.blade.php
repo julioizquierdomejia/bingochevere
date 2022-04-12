@@ -209,17 +209,17 @@
                         for (var i = 0; i < 5; i++) {
                             if (i == 2) {
 
-                                $('.fila1').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[0][i] +'</td>');
-                                $('.fila2').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[1][i] +'</td>');
-                                $('.fila3').append('<td width="190px" style="padding:24px 16px 23px 16px; opacity:0;">'+ res[2][i] +'</td>');
-                                $('.fila4').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[3][i] +'</td>');
-                                $('.fila5').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[4][i] +'</td>');
+                                $('.fila1').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[0][i] +'</td>');
+                                $('.fila2').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[1][i] +'</td>');
+                                $('.fila3').append('<td width="190px" style="padding:0 8px; height: 93px; opacity:0;">'+ res[2][i] +'</td>');
+                                $('.fila4').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[3][i] +'</td>');
+                                $('.fila5').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[4][i] +'</td>');
                             }else{
-                                $('.fila1').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[0][i] +'</td>');
-                                $('.fila2').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[1][i] +'</td>');
-                                $('.fila3').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[2][i] +'</td>');
-                                $('.fila4').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[3][i] +'</td>');
-                                $('.fila5').append('<td width="190px" style="padding:24px 16px 23px 16px">'+ res[4][i] +'</td>');
+                                $('.fila1').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[0][i] +'</td>');
+                                $('.fila2').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[1][i] +'</td>');
+                                $('.fila3').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[2][i] +'</td>');
+                                $('.fila4').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[3][i] +'</td>');
+                                $('.fila5').append('<td width="190px" style="padding:0 8px; height: 93px;">'+ res[4][i] +'</td>');
                             }
                         }
                     } 
